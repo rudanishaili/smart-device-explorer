@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-24">
+
+    <div class="text-center">
+
+        <h1 class="text-6xl font-bold mb-6">
+            Smart Device Explorer
+        </h1>
+
+        <p class="text-xl mb-8">
+            AI Powered Mobile Recommendation Platform
+        </p>
+
+        <a href="#" class="bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-200">
+            Start Exploring
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- EXPLORE SECTION -->
+<section class="py-20 px-6 bg-gray-50">
+
+    <div class="max-w-6xl mx-auto">
+
+        <div class="text-center mb-12">
+            <p class="text-blue-600 font-semibold mb-2">
+                START YOUR SEARCH
+            </p>
+
+            <h2 class="text-4xl font-bold text-gray-900">
+                Explore Smart Mobiles
+            </h2>
+
+            <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                Answer a few simple questions and our AI-powered recommendation engine will suggest the best smartphones based on your budget, brand preference, and usage.
+            </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+
+            <!-- LEFT CONTENT -->
+            <div class="p-10 flex flex-col justify-center">
+
+                <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                    📱
+                </div>
+
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">
+                    Mobile Explorer
+                </h3>
+
+                <p class="text-gray-600 mb-6 leading-7">
+                    Get personalized mobile recommendations using real device data, smart scoring, and AI-based matching.
+                </p>
+
+                <ul class="space-y-3 text-gray-700 mb-8">
+                    <li>✅ Budget-based recommendations</li>
+                    <li>✅ Usage-based matching</li>
+                    <li>✅ Compare shortlisted phones</li>
+                </ul>
+
+                <a href="/mobile-explorer/" class="inline-block bg-blue-600 text-white px-7 py-3 rounded-xl font-semibold hover:bg-blue-700 w-fit">
+                    Explore Mobiles
+                </a>
+
+            </div>
+
+            <!-- RIGHT DESIGN -->
+            <div class="bg-gradient-to-br from-blue-600 to-indigo-700 p-10 text-white flex flex-col justify-center">
+
+                <h4 class="text-2xl font-bold mb-6">
+                    What you’ll get
+                </h4>
+
+                <div class="space-y-5">
+
+                    <div class="bg-white/15 p-4 rounded-xl">
+                        <p class="font-semibold">AI Match Score</p>
+                        <p class="text-sm text-blue-100">See how well each phone matches your needs.</p>
+                    </div>
+
+                    <div class="bg-white/15 p-4 rounded-xl">
+                        <p class="font-semibold">Smart Comparison</p>
+                        <p class="text-sm text-blue-100">Compare selected phones side-by-side.</p>
+                    </div>
+
+                    <div class="bg-white/15 p-4 rounded-xl">
+                        <p class="font-semibold">Best Final Choice</p>
+                        <p class="text-sm text-blue-100">Get one recommended winner from your favorites.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ABOUT SECTION -->
+<section class="bg-white py-32 px-10">
+
+    <div class="max-w-4xl mx-auto text-center">
+
+        <h2 class="text-4xl font-bold mb-6">
+            About Smart Device Explorer
+        </h2>
+
+        <p class="text-lg text-gray-600 leading-8">
+            Smart Device Explorer is an AI-powered platform that helps users discover the best mobiles and laptops based on budget, usage, and preferences. The system uses smart recommendation logic, comparison features, and real-time scraped data to help users make better buying decisions.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}
