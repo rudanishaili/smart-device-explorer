@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-20 px-6 bg-gray-100 min-h-screen">
+
+    <div class="max-w-7xl mx-auto">
+
+        <h1 class="text-5xl font-bold text-center mb-14">
+            Your Favorite Devices
+        </h1>
+
+        <a
+            href="/recommendations/"
+            class="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700"
+        >
+            ← Back to Recommended Devices
+        </a>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            {% for item in favorite_items %}
+
+            <div id="favorite-card-{{ item.device.id }}" class="bg-white rounded-3xl shadow-xl p-6">
+
+                <img
+                    src="{{ item.device.image_url }}"
+                    class="w-full h-64 object-contain mb-6"
+                >
+
+                <h2 class="text-2xl font-bold mb-4">
+                    {{ item.device.name }}
+                </h2>
+
+                <p class="mb-2">
+                    <strong>Price:</strong>
+                    ₹{{ item.device.price }}
+                </p>
+
+                <p class="mb-2">
+                    <strong>RAM:</strong>
+                    {{ item.device.ram }}
+                </p>
+
+                <p class="mb-2">
+                    <strong>Storage:</strong>
+                    {{ item.device.storage }}
+                </p>
+
+                <button
+                    data-device-id="{{ item.device.id }}"
+                    class="remove-favorite-btn block w-full text-center mt-6 bg-red-600 text-white py-3 rounded-xl hover:bg-red-700"
+                >
+                    Remove
+                </button>
+
+            </div>
+
+            {% empty %}
+
+            <p class="text-xl">
+                No favorite devices added yet.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+    const removeButtons = document.querySelectorAll(".remove-favorite-btn");
+
+    removeButtons.forEach(button => {
+        button.addEventListener("click", function () {
+
+            const deviceId = this.dataset.deviceId;
+
+            fetch(`/remove-from-favorites/${deviceId}/`, {
+                method: "GET",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    const card = document.getElementById(`favorite-card-${deviceId}`);
+                    if (card) {
+                        card.remove();
+                    }
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert("Something went wrong");
+            });
+
+        });
+    });
+</script>
+
+{% endblock %}  

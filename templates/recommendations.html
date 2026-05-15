@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-20 px-6 bg-gray-100 min-h-screen">
+
+    <div class="max-w-7xl mx-auto">
+
+        <h1 class="text-5xl font-bold text-center mb-14">
+            AI Recommended Devices
+        </h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            {% for item in recommended_devices %}
+
+            <div class="bg-white rounded-3xl shadow-xl p-6">
+
+                <img 
+                    src="{{ item.device.image_url }}"
+                    alt="{{ item.device.name }}"
+                    class="w-full h-64 object-contain mb-6"
+                >
+
+                <h2 class="text-2xl font-bold mb-4">
+                    {{ item.device.name }}
+                </h2>
+
+                <div class="mb-4">
+                    <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full font-semibold">
+                        {{ item.score }}% Match
+                    </span>
+                </div>
+
+                <div class="space-y-2 text-gray-700">
+
+                    <p><strong>Brand:</strong> {{ item.device.brand }}</p>
+
+                    <p><strong>Price:</strong> ₹{{ item.device.price }}</p>
+
+                    <p><strong>RAM:</strong> {{ item.device.ram }}</p>
+
+                    <p><strong>Storage:</strong> {{ item.device.storage }}</p>
+
+                    <p><strong>Processor:</strong> {{ item.device.processor }}</p>
+
+                    {% if item.device.id in favorite_device_ids %}
+
+                        <button
+                            class="favorite-btn block w-full text-center mt-6 bg-green-600 text-white py-3 rounded-xl cursor-not-allowed"
+                            disabled
+                        >
+                            Added
+                        </button>
+
+                    {% else %}
+
+                        <button
+                            data-device-id="{{ item.device.id }}"
+                            class="favorite-btn block w-full text-center mt-6 bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700"
+                        >
+                            Add To Favorites
+                        </button>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <p class="text-center text-xl">
+                No devices found.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+    const buttons = document.querySelectorAll(".favorite-btn");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", function () {
+
+            const deviceId = this.dataset.deviceId;
+
+            if (!deviceId) {
+                return;
+            }
+
+            fetch(`/add-to-favorites/${deviceId}/`, {
+                method: "GET",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    this.innerText = "Added";
+                    this.classList.remove("bg-blue-600", "hover:bg-blue-700");
+                    this.classList.add("bg-green-600", "cursor-not-allowed");
+                    this.disabled = true;
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert("Something went wrong");
+            });
+
+        });
+    });
+</script>
+
+
+{% endblock %}
