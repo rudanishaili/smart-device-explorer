@@ -18,4 +18,6 @@ urlpatterns = [
         views.remove_from_favorites,
         name='remove_from_favorites'
     ),
+
+    path('compare/', views.compare_devices, name='compare'),
 ]

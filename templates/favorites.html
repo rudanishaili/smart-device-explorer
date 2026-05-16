@@ -17,11 +17,23 @@
             ← Back to Recommended Devices
         </a>
 
+        <form  id="compare-form" method="GET" action="/compare/">
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
 
             {% for item in favorite_items %}
 
             <div id="favorite-card-{{ item.device.id }}" class="bg-white rounded-3xl shadow-xl p-6">
+
+                <label class="flex items-center gap-3 mb-4 font-semibold">
+                    <input
+                        type="checkbox"
+                        name="devices"
+                        value="{{ item.device.id }}"
+                        class="w-5 h-5"
+                    >
+                    Select for comparison
+                </label>
 
                 <img
                     src="{{ item.device.image_url }}"
@@ -48,11 +60,20 @@
                 </p>
 
                 <button
+                    type="button"
                     data-device-id="{{ item.device.id }}"
                     class="remove-favorite-btn block w-full text-center mt-6 bg-red-600 text-white py-3 rounded-xl hover:bg-red-700"
                 >
                     Remove
                 </button>
+
+                <a
+                    href="{{ item.device.source_url }}"
+                    target="_blank"
+                    class="block text-center mt-4 bg-orange-500 text-white py-3 rounded-xl hover:bg-orange-600"
+                >
+                    Buy Now
+                </a>
 
             </div>
 
@@ -65,6 +86,16 @@
             {% endfor %}
 
         </div>
+
+         <div class="text-center mt-12">
+        <button
+            type="submit"
+            class="bg-indigo-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-indigo-700"
+        >
+            Compare Selected Devices
+        </button>
+    </div>
+    </form>
 
     </div>
 
@@ -102,6 +133,36 @@
 
         });
     });
+</script>
+
+<script>
+
+    const compareForm = document.getElementById("compare-form");
+
+    compareForm.addEventListener("submit", function(event) {
+
+        const checkedDevices = document.querySelectorAll(
+            'input[name="devices"]:checked'
+        );
+
+        if (checkedDevices.length < 2) {
+
+            event.preventDefault();
+
+            alert("Please select at least 2 devices for comparison.");
+
+        }
+
+        else if (checkedDevices.length > 3) {
+
+            event.preventDefault();
+
+            alert("You can compare maximum 3 devices only.");
+
+        }
+
+    });
+
 </script>
 
 {% endblock %}  

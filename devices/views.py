@@ -144,3 +144,55 @@ def remove_from_favorites(request, device_id):
         'message': 'Removed from favorites',
         'device_id': device_id
     })
+
+
+def compare_devices(request):
+
+    device_ids = request.GET.getlist('devices')
+
+    devices = Device.objects.filter(id__in=device_ids)
+
+    return render(
+        request,
+        'compare.html',
+        {'devices': devices}
+    )
+
+
+def compare_devices(request):
+
+    device_ids = request.GET.getlist('devices')
+
+    devices = Device.objects.filter(id__in=device_ids)
+
+    best_device = None
+    best_score = -1
+
+    for device in devices:
+
+        score = 0
+
+        if device.ram:
+            ram_value = int(device.ram.replace("GB", ""))
+            score += ram_value * 3
+
+        if device.storage:
+            storage_value = int(device.storage.replace("GB", ""))
+            score += storage_value * 0.2
+
+        if device.price:
+            score += max(0, 30 - (device.price / 3000))
+
+        if score > best_score:
+            best_score = score
+            best_device = device
+
+    return render(
+        request,
+        'compare.html',
+        {
+            'devices': devices,
+            'best_device': best_device,
+            'best_score': round(best_score, 2)
+        }
+    )
