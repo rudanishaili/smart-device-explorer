@@ -44,6 +44,18 @@
 
                     <p><strong>Processor:</strong> {{ item.device.processor }}</p>
 
+                    {% if item.device.display %}
+                    <p><strong>Display:</strong> {{ item.device.display }}</p>
+                    {% endif %}
+                    
+                    {% if item.device.camera %}
+                    <p><strong>Camera:</strong> {{ item.device.camera }}</p>
+                    {% endif %}
+
+                    {% if item.device.battery %}
+                    <p><strong>Battery:</strong> {{ item.device.battery }}</p>
+                    {% endif %}
+
                     {% if item.device.id in favorite_device_ids %}
 
                         <button

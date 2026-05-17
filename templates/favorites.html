@@ -49,15 +49,47 @@
                     ₹{{ item.device.price }}
                 </p>
 
+               {% if item.device.ram %}
                 <p class="mb-2">
                     <strong>RAM:</strong>
                     {{ item.device.ram }}
                 </p>
+                {% endif %}
 
+                {% if item.device.storage %}
                 <p class="mb-2">
                     <strong>Storage:</strong>
                     {{ item.device.storage }}
                 </p>
+                {% endif %}
+                
+                {% if item.device.processor %}
+                <p class="mb-2">
+                    <strong>Processor:</strong>
+                    {{ item.device.processor }}
+                </p>
+                {% endif %}
+
+                {% if item.device.display %}
+                <p class="mb-2">
+                    <strong>Display:</strong>
+                    {{ item.device.display }}
+                </p>
+                {% endif %}
+
+                {% if item.device.camera %}
+                <p class="mb-2">
+                    <strong>Camera:</strong>
+                    {{ item.device.camera }}
+                </p>
+                {% endif %}
+
+                {% if item.device.battery %}
+                <p class="mb-2">
+                    <strong>Battery:</strong>
+                    {{ item.device.battery }}
+                </p>
+                {% endif %}
 
                 <button
                     type="button"
