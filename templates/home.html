@@ -5,7 +5,6 @@
 <!-- HERO SECTION -->
 <section class="relative overflow-hidden min-h-[88vh] flex items-center px-6">
 
-    <!-- BACKGROUND EFFECTS -->
     <div class="absolute inset-0 -z-10">
         <div class="absolute top-20 left-20 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl"></div>
         <div class="absolute bottom-20 right-20 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
@@ -14,25 +13,24 @@
 
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-        <!-- LEFT HERO CONTENT -->
         <div>
 
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-300 text-sm mb-7">
                 <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
-                AI-powered mobile discovery platform
+                AI-powered device intelligence platform
             </div>
 
             <h1 class="text-6xl md:text-7xl font-bold leading-tight tracking-tight mb-8">
                 Find the
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                    perfect phone
+                    perfect device
                 </span>
                 for your needs.
             </h1>
 
             <p class="text-xl text-slate-400 leading-8 max-w-2xl mb-10">
-                Explore smartphones using intelligent recommendations, real device data,
-                smart comparison, favorites, and AI-powered scoring.
+                Explore mobiles and laptops using intelligent recommendations,
+                real device data, favorites, comparison, and AI-powered scoring.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4">
@@ -41,21 +39,20 @@
                     href="/mobile-explorer/"
                     class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-semibold shadow-xl shadow-blue-500/20 transition hover:-translate-y-1"
                 >
-                    Start Exploring
+                    Explore Mobiles
                 </a>
 
                 <a
-                    href="/favorites/"
+                    href="/laptop-explorer/"
                     class="border border-white/10 hover:border-white/30 text-slate-300 hover:text-white px-8 py-4 rounded-2xl font-semibold transition"
                 >
-                    View Favorites
+                    Explore Laptops
                 </a>
 
             </div>
 
         </div>
 
-        <!-- RIGHT HERO CARD -->
         <div class="relative">
 
             <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-[2rem] blur opacity-30"></div>
@@ -65,55 +62,193 @@
                 <div class="flex justify-between items-center mb-8">
 
                     <div>
-                        <p class="text-slate-400 text-sm">AI Match Result</p>
-                        <h3 class="text-2xl font-bold">Recommended Phone</h3>
+                        <p class="text-slate-400 text-sm">AI Recommendation System</p>
+                        <h3 class="text-2xl font-bold">Device Intelligence</h3>
                     </div>
 
                     <span class="bg-green-500/10 text-green-400 px-4 py-2 rounded-full text-sm font-semibold">
-                        92% Match
+                        Live Engine
                     </span>
 
                 </div>
 
-                <div class="bg-slate-950/80 rounded-3xl p-6 border border-white/10">
+                <div class="grid grid-cols-1 gap-5">
 
-                    <div class="flex items-center gap-6">
-
-                        <div class="w-28 h-36 bg-gradient-to-b from-slate-700 to-slate-900 rounded-3xl border border-white/10 flex items-center justify-center text-5xl">
+                    <div class="bg-slate-950/80 rounded-3xl p-6 border border-white/10 flex items-center gap-6">
+                        <div class="w-20 h-24 bg-gradient-to-b from-blue-600/30 to-slate-900 rounded-3xl border border-white/10 flex items-center justify-center text-4xl">
                             📱
                         </div>
 
                         <div>
                             <h4 class="text-2xl font-bold mb-2">
-                                Smart Choice Engine
+                                Mobile Explorer
                             </h4>
 
-                            <p class="text-slate-400 leading-7">
-                                Calculates score using RAM, storage, processor,
-                                price, usage and value.
+                            <p class="text-slate-400">
+                                Phones ranked by budget, usage, RAM, camera and value.
                             </p>
                         </div>
+                    </div>
+
+                    <div class="bg-slate-950/80 rounded-3xl p-6 border border-white/10 flex items-center gap-6">
+                        <div class="w-20 h-24 bg-gradient-to-b from-purple-600/30 to-slate-900 rounded-3xl border border-white/10 flex items-center justify-center text-4xl">
+                            💻
+                        </div>
+
+                        <div>
+                            <h4 class="text-2xl font-bold mb-2">
+                                Laptop Explorer
+                            </h4>
+
+                            <p class="text-slate-400">
+                                Laptops ranked for coding, gaming, business and study.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="grid grid-cols-3 gap-4 mt-8">
+
+                    <div class="bg-white/5 rounded-2xl p-4 text-center">
+                        <p class="text-2xl font-bold text-blue-400">AI</p>
+                        <p class="text-xs text-slate-500 mt-1">Scoring</p>
+                    </div>
+
+                    <div class="bg-white/5 rounded-2xl p-4 text-center">
+                        <p class="text-2xl font-bold text-purple-400">2x</p>
+                        <p class="text-xs text-slate-500 mt-1">Categories</p>
+                    </div>
+
+                    <div class="bg-white/5 rounded-2xl p-4 text-center">
+                        <p class="text-2xl font-bold text-green-400">₹</p>
+                        <p class="text-xs text-slate-500 mt-1">Value</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EXPLORER SECTION -->
+<section class="px-6 py-24">
+
+    <div class="max-w-7xl mx-auto">
+
+        <div class="text-center mb-16">
+
+            <p class="text-blue-400 font-semibold mb-3 tracking-wide">
+                CHOOSE YOUR EXPLORER
+            </p>
+
+            <h2 class="text-5xl font-bold mb-5">
+                One platform. Two smart recommendation engines.
+            </h2>
+
+            <p class="text-slate-400 max-w-3xl mx-auto text-lg leading-8">
+                Start with mobiles or laptops. Each explorer uses a separate recommendation flow,
+                separate data category and separate filtering logic.
+            </p>
+
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+            <!-- MOBILE EXPLORER -->
+            <div class="relative group">
+
+                <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-[2rem] blur opacity-20 group-hover:opacity-35 transition"></div>
+
+                <div class="relative bg-white/5 border border-white/10 rounded-[2rem] p-10 backdrop-blur-xl shadow-2xl h-full hover:bg-white/10 transition">
+
+                    <div class="w-16 h-16 rounded-3xl bg-blue-500/10 flex items-center justify-center text-3xl mb-8">
+                        📱
+                    </div>
+
+                    <h3 class="text-4xl font-bold mb-5">
+                        Mobile Explorer
+                    </h3>
+
+                    <p class="text-slate-400 leading-8 mb-8">
+                        Discover smartphones based on budget, brand, gaming performance,
+                        camera quality, battery and AI match score.
+                    </p>
+
+                    <div class="space-y-4 mb-10 text-slate-300">
+
+                        <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+                            ✅ AI phone recommendation engine
+                        </div>
+
+                        <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+                            ✅ Mobile favorites and comparison
+                        </div>
+
+                        <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+                            ✅ Device detail pages and buy links
+                        </div>
 
                     </div>
 
-                    <div class="grid grid-cols-3 gap-4 mt-8">
+                    <a
+                        href="/mobile-explorer/"
+                        class="inline-block bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-semibold transition hover:-translate-y-1"
+                    >
+                        Explore Mobiles
+                    </a>
 
-                        <div class="bg-white/5 rounded-2xl p-4 text-center">
-                            <p class="text-2xl font-bold text-blue-400">RAM</p>
-                            <p class="text-xs text-slate-500 mt-1">Performance</p>
+                </div>
+
+            </div>
+
+            <!-- LAPTOP EXPLORER -->
+            <div class="relative group">
+
+                <div class="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-[2rem] blur opacity-20 group-hover:opacity-35 transition"></div>
+
+                <div class="relative bg-white/5 border border-white/10 rounded-[2rem] p-10 backdrop-blur-xl shadow-2xl h-full hover:bg-white/10 transition">
+
+                    <div class="w-16 h-16 rounded-3xl bg-purple-500/10 flex items-center justify-center text-3xl mb-8">
+                        💻
+                    </div>
+
+                    <h3 class="text-4xl font-bold mb-5">
+                        Laptop Explorer
+                    </h3>
+
+                    <p class="text-slate-400 leading-8 mb-8">
+                        Find laptops for coding, gaming, editing, business and study
+                        using dataset-powered AI filtering.
+                    </p>
+
+                    <div class="space-y-4 mb-10 text-slate-300">
+
+                        <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+                            ✅ Laptop dataset integration
                         </div>
 
-                        <div class="bg-white/5 rounded-2xl p-4 text-center">
-                            <p class="text-2xl font-bold text-purple-400">AI</p>
-                            <p class="text-xs text-slate-500 mt-1">Scoring</p>
+                        <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+                            ✅ Usage-based laptop ranking
                         </div>
 
-                        <div class="bg-white/5 rounded-2xl p-4 text-center">
-                            <p class="text-2xl font-bold text-green-400">₹</p>
-                            <p class="text-xs text-slate-500 mt-1">Value</p>
+                        <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+                            ✅ Separate laptop recommendation flow
                         </div>
 
                     </div>
+
+                    <a
+                        href="/laptop-explorer/"
+                        class="inline-block bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white px-8 py-4 rounded-2xl font-semibold transition hover:-translate-y-1"
+                    >
+                        Explore Laptops
+                    </a>
 
                 </div>
 
@@ -131,28 +266,9 @@
 
     <div class="max-w-7xl mx-auto">
 
-        <div class="text-center mb-16">
-
-            <p class="text-blue-400 font-semibold mb-3 tracking-wide">
-                SMART EXPLORATION
-            </p>
-
-            <h2 class="text-5xl font-bold mb-5">
-                One platform. Smarter phone decisions.
-            </h2>
-
-            <p class="text-slate-400 max-w-2xl mx-auto text-lg leading-8">
-                Choose your budget, brand and purpose. The system ranks phones,
-                lets you save favorites, compare devices and pick the best one.
-            </p>
-
-        </div>
-
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            <!-- CARD 1 -->
             <div class="group bg-white/5 border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition hover:-translate-y-2">
-
                 <div class="w-14 h-14 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center text-3xl mb-6">
                     🎯
                 </div>
@@ -162,14 +278,11 @@
                 </h3>
 
                 <p class="text-slate-400 leading-7">
-                    Get phones matched to your usage, budget and brand preference using intelligent scoring.
+                    Get mobiles and laptops matched to your usage, budget and brand preference.
                 </p>
-
             </div>
 
-            <!-- CARD 2 -->
             <div class="group bg-white/5 border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition hover:-translate-y-2">
-
                 <div class="w-14 h-14 bg-purple-500/10 text-purple-400 rounded-2xl flex items-center justify-center text-3xl mb-6">
                     ⚖️
                 </div>
@@ -179,14 +292,11 @@
                 </h3>
 
                 <p class="text-slate-400 leading-7">
-                    Compare shortlisted phones side-by-side and let the AI winner engine pick the best device.
+                    Compare shortlisted devices side-by-side and let the AI winner engine pick the best device.
                 </p>
-
             </div>
 
-            <!-- CARD 3 -->
             <div class="group bg-white/5 border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition hover:-translate-y-2">
-
                 <div class="w-14 h-14 bg-green-500/10 text-green-400 rounded-2xl flex items-center justify-center text-3xl mb-6">
                     🛒
                 </div>
@@ -198,7 +308,6 @@
                 <p class="text-slate-400 leading-7">
                     Move from recommendation to purchase faster using direct product search and buy links.
                 </p>
-
             </div>
 
         </div>
@@ -214,19 +323,30 @@
     <div class="max-w-6xl mx-auto bg-gradient-to-r from-blue-600 to-purple-700 rounded-[2rem] p-12 md:p-16 text-center shadow-2xl shadow-blue-500/20">
 
         <h2 class="text-4xl md:text-5xl font-bold mb-6">
-            Ready to find your next smartphone?
+            Ready to discover your next device?
         </h2>
 
         <p class="text-blue-100 text-lg max-w-2xl mx-auto mb-9 leading-8">
-            Start with your budget and usage preference. The AI engine will rank the best matching phones for you.
+            Choose a category, enter your preferences and let the AI engine rank the best matching devices.
         </p>
 
-        <a
-            href="/mobile-explorer/"
-            class="inline-block bg-white text-blue-700 px-9 py-4 rounded-2xl font-bold hover:bg-slate-100 transition hover:-translate-y-1"
-        >
-            Explore Mobiles
-        </a>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+
+            <a
+                href="/mobile-explorer/"
+                class="inline-block bg-white text-blue-700 px-9 py-4 rounded-2xl font-bold hover:bg-slate-100 transition hover:-translate-y-1"
+            >
+                Explore Mobiles
+            </a>
+
+            <a
+                href="/laptop-explorer/"
+                class="inline-block bg-slate-950/40 border border-white/20 text-white px-9 py-4 rounded-2xl font-bold hover:bg-slate-950/60 transition hover:-translate-y-1"
+            >
+                Explore Laptops
+            </a>
+
+        </div>
 
     </div>
 

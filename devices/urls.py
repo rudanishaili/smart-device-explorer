@@ -22,4 +22,15 @@ urlpatterns = [
     path('compare/', views.compare_devices, name='compare'),
 
     path('device/<int:device_id>/', views.device_detail, name='device_detail'),
+
+    path('laptop-explorer/', views.laptop_explorer, name='laptop_explorer'),
+
+    path(
+        'laptop-recommendations/',
+        views.laptop_recommendations,
+        name='laptop_recommendations'
+    ),
+
+    path('laptop-favorites/', views.laptop_favorites, name='laptop_favorites'),
+    path('laptop-compare/', views.laptop_compare, name='laptop_compare'),
 ]

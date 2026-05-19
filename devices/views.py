@@ -11,6 +11,10 @@ def mobile_explorer(request):
     return render(request, 'mobile_explorer.html')
 
 
+def laptop_explorer(request):
+    return render(request, 'laptop_explorer.html')
+
+
 def recommendations(request):
 
     recommended_devices = []
@@ -39,6 +43,7 @@ def recommendations(request):
         budget = int(budget)
 
         devices = Device.objects.filter(
+            category='mobile',
             brand__icontains=brand,
             price__lte=budget
         )
@@ -117,7 +122,8 @@ def add_to_favorites(request, device_id):
 def favorites(request):
 
     favorite_items = Favorite.objects.filter(
-        user=request.user
+        user=request.user,
+        device__category='mobile'
     )
 
     return render(
@@ -216,5 +222,142 @@ def device_detail(request, device_id):
         {
             'device': device,
             'is_favorite': is_favorite
+        }
+    )
+
+def laptop_recommendations(request):
+
+    if request.method == "POST":
+
+        brand = request.POST.get("brand")
+        budget = int(request.POST.get("budget"))
+        usage = request.POST.get("usage")
+
+        devices = Device.objects.filter(
+            category='laptop',
+            brand__icontains=brand,
+            price__lte=budget
+        )
+
+        recommended_devices = []
+
+        for device in devices:
+
+            score = 50
+
+            # RAM SCORE
+            if device.ram:
+                try:
+                    ram = int(device.ram.replace("GB", "").strip())
+
+                    if ram >= 16:
+                        score += 25
+                    elif ram >= 8:
+                        score += 15
+
+                except:
+                    pass
+
+            # STORAGE SCORE
+            if device.storage:
+                try:
+                    storage = int(device.storage.replace("GB", "").strip())
+
+                    if storage >= 512:
+                        score += 20
+                    elif storage >= 256:
+                        score += 10
+
+                except:
+                    pass
+
+            recommended_devices.append({
+                'device': device,
+                'score': min(score, 100)
+            })
+
+        recommended_devices.sort(
+            key=lambda x: x['score'],
+            reverse=True
+        )
+
+        favorite_device_ids = []
+
+        if request.user.is_authenticated:
+
+            favorite_device_ids = Favorite.objects.filter(
+                user=request.user,
+                device__category='laptop'
+            ).values_list('device_id', flat=True)
+
+        return render(
+            request,
+            'laptop_recommendations.html',
+            {
+                'recommended_devices': recommended_devices,
+                'favorite_device_ids': favorite_device_ids
+            }
+        )
+
+    return redirect('/laptop-explorer/')
+
+
+def laptop_favorites(request):
+
+    favorite_items = Favorite.objects.filter(
+        user=request.user,
+        device__category='laptop'
+    )
+
+    return render(
+        request,
+        'laptop_favorites.html',
+        {'favorite_items': favorite_items}
+    )
+
+def laptop_compare(request):
+
+    device_ids = request.GET.getlist('devices')
+
+    devices = Device.objects.filter(
+        id__in=device_ids,
+        category='laptop'
+    )
+
+    best_device = None
+    best_score = -1
+
+    for device in devices:
+
+        score = 0
+
+        if device.ram:
+            try:
+                ram_value = int(device.ram.replace("GB", "").strip())
+                score += ram_value * 3
+            except:
+                pass
+
+        if device.storage:
+            try:
+                storage_value = int(device.storage.replace("GB", "").strip())
+                score += storage_value * 0.15
+            except:
+                pass
+
+        if device.price:
+            score += max(0, 40 - (device.price / 4000))
+
+        if score > best_score:
+            best_score = score
+            best_device = device
+
+    return render(
+        request,
+        'laptop_compare.html',
+        {
+            'devices': devices,
+            'best_device': best_device,
+            'best_score': round(best_score, 2)
         }
     )

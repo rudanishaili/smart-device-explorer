@@ -1,7 +1,19 @@
 from django.db import models
 
-
 class Device(models.Model):
+    
+    CATEGORY_CHOICES = [
+        ('mobile', 'Mobile'),
+        ('laptop', 'Laptop'),
+    ]
+
+    category = models.CharField(
+        max_length=20,
+        choices=CATEGORY_CHOICES,
+        default='mobile'
+    )
+
+
     USAGE_CHOICES = [
         ('gaming', 'Gaming'),
         ('student', 'Student'),

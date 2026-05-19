@@ -1,0 +1,357 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="relative min-h-screen px-6 py-16 overflow-hidden">
+
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-32 left-10 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-32 right-10 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- HEADER -->
+        <div class="text-center mb-16">
+
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-300 text-sm mb-6">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                AI analysis completed
+            </div>
+
+            <h1 class="text-6xl font-bold tracking-tight mb-5">
+                AI Recommended Laptops
+            </h1>
+
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto leading-8">
+                Ranked results based on your budget, brand preference, usage type and device specifications.
+            </p>
+
+        </div>
+
+        {% if recommended_devices %}
+
+        <!-- TOP RECOMMENDATION SPOTLIGHT -->
+        {% for item in recommended_devices %}
+            {% if forloop.first %}
+
+            <div class="mb-16 relative">
+
+                <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-[2rem] blur opacity-25"></div>
+
+                <div class="relative bg-white/5 border border-white/10 rounded-[2rem] p-8 md:p-10 backdrop-blur-2xl shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+                    <div class="flex justify-center">
+                        <div class="relative">
+                            <div class="absolute -inset-8 bg-blue-500/20 rounded-full blur-3xl"></div>
+                            <img
+                                src="{{ item.device.image_url }}"
+                                alt="{{ item.device.name }}"
+                                class="relative h-80 object-contain drop-shadow-2xl"
+                            >
+                        </div>
+                    </div>
+
+                    <div>
+
+                        <div class="flex items-center gap-3 mb-5">
+                            <span class="bg-green-500/10 text-green-400 px-4 py-2 rounded-full font-semibold">
+                                🏆 Top Match
+                            </span>
+
+                            <span class="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full font-semibold">
+                                {{ item.score }}% Match
+                            </span>
+                        </div>
+
+                        <h2 class="text-5xl font-bold mb-5">
+                            {{ item.device.name }}
+                        </h2>
+
+                        <p class="text-slate-400 text-lg mb-8 leading-8">
+                            This device is ranked highest by the AI engine based on performance, storage, price-to-value and usage fit.
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+
+                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
+                                <p class="text-slate-500 text-sm">Brand</p>
+                                <p class="text-xl font-bold">{{ item.device.brand }}</p>
+                            </div>
+
+                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
+                                <p class="text-slate-500 text-sm">Price</p>
+                                <p class="text-xl font-bold">₹{{ item.device.price }}</p>
+                            </div>
+
+                            {% if item.device.ram %}
+                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
+                                <p class="text-slate-500 text-sm">RAM</p>
+                                <p class="text-xl font-bold">{{ item.device.ram }}</p>
+                            </div>
+                            {% endif %}
+
+                            {% if item.device.storage %}
+                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
+                                <p class="text-slate-500 text-sm">Storage</p>
+                                <p class="text-xl font-bold">{{ item.device.storage }}</p>
+                            </div>
+                            {% endif %}
+
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+
+                            {% if item.device.id in favorite_device_ids %}
+
+                                <button
+                                    class="favorite-btn bg-green-600 text-white px-7 py-4 rounded-2xl font-semibold cursor-not-allowed"
+                                    disabled
+                                >
+                                    Added
+                                </button>
+
+                            {% else %}
+
+                                <button
+                                    data-device-id="{{ item.device.id }}"
+                                    class="favorite-btn bg-blue-600 hover:bg-blue-500 text-white px-7 py-4 rounded-2xl font-semibold transition hover:-translate-y-1"
+                                >
+                                    Add To Favorites
+                                </button>
+
+                            {% endif %}
+
+                            <a
+                                href="{{ item.device.source_url }}"
+                                target="_blank"
+                                class="bg-orange-500 hover:bg-orange-400 text-white px-7 py-4 rounded-2xl font-semibold transition hover:-translate-y-1 text-center"
+                            >
+                                Buy Now
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+        {% endfor %}
+
+
+        <!-- OTHER RECOMMENDATIONS -->
+        <div class="flex items-center justify-between mb-8">
+
+            <h2 class="text-3xl font-bold">
+                More Matches
+            </h2>
+
+            <a
+                href="/laptop-favorites/"
+                class="text-blue-400 hover:text-blue-300 font-semibold"
+            >
+                View Favorites →
+            </a>
+
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+            {% for item in recommended_devices %}
+
+            <div class="group bg-white/5 border border-white/10 rounded-[2rem] p-6 backdrop-blur-xl hover:bg-white/10 transition hover:-translate-y-2 shadow-xl">
+
+                <div class="flex justify-between items-start mb-5">
+
+                    <span class="bg-green-500/10 text-green-400 px-4 py-2 rounded-full font-semibold text-sm">
+                        {{ item.score }}% Match
+                    </span>
+
+                    <span class="text-slate-500 text-sm">
+                        {{ item.device.brand }}
+                    </span>
+
+                </div>
+
+                <div class="h-64 flex items-center justify-center mb-6">
+                    <img
+                        src="{{ item.device.image_url }}"
+                        alt="{{ item.device.name }}"
+                        class="max-h-60 object-contain group-hover:scale-105 transition duration-500"
+                    >
+                </div>
+
+                <h2 class="text-2xl font-bold mb-4">
+                    {{ item.device.name }}
+                </h2>
+
+                <a
+                    href="/device/{{ item.device.id }}/"
+                    class="inline-block text-blue-400 hover:text-blue-300 font-semibold mb-4"
+                >
+                    View Details →
+                </a>
+
+                <div class="space-y-3 text-slate-300 text-sm">
+
+                    <div class="flex justify-between border-b border-white/5 pb-2">
+                        <span class="text-slate-500">Price</span>
+                        <span class="font-semibold text-white">₹{{ item.device.price }}</span>
+                    </div>
+
+                    {% if item.device.ram %}
+                    <div class="flex justify-between border-b border-white/5 pb-2">
+                        <span class="text-slate-500">RAM</span>
+                        <span>{{ item.device.ram }}</span>
+                    </div>
+                    {% endif %}
+
+                    {% if item.device.storage %}
+                    <div class="flex justify-between border-b border-white/5 pb-2">
+                        <span class="text-slate-500">Storage</span>
+                        <span>{{ item.device.storage }}</span>
+                    </div>
+                    {% endif %}
+
+                    {% if item.device.processor %}
+                    <div class="pt-2">
+                        <p class="text-slate-500 mb-1">Processor</p>
+                        <p>{{ item.device.processor }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if item.device.display %}
+                    <div class="pt-2">
+                        <p class="text-slate-500 mb-1">Display</p>
+                        <p>{{ item.device.display }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if item.device.camera %}
+                    <div class="pt-2">
+                        <p class="text-slate-500 mb-1">Camera</p>
+                        <p>{{ item.device.camera }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if item.device.battery %}
+                    <div class="pt-2">
+                        <p class="text-slate-500 mb-1">Battery</p>
+                        <p>{{ item.device.battery }}</p>
+                    </div>
+                    {% endif %}
+
+                </div>
+
+                <div class="mt-7 grid grid-cols-1 gap-3">
+
+                    {% if item.device.id in favorite_device_ids %}
+
+                        <button
+                            class="favorite-btn w-full bg-green-600 text-white py-3 rounded-2xl cursor-not-allowed font-semibold"
+                            disabled
+                        >
+                            Added
+                        </button>
+
+                    {% else %}
+
+                        <button
+                            data-device-id="{{ item.device.id }}"
+                            class="favorite-btn w-full bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-2xl font-semibold transition"
+                        >
+                            Add To Favorites
+                        </button>
+
+                    {% endif %}
+
+                    <a
+                        href="{{ item.device.source_url }}"
+                        target="_blank"
+                        class="w-full text-center bg-orange-500 hover:bg-orange-400 text-white py-3 rounded-2xl font-semibold transition"
+                    >
+                        Buy Now
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <!-- EMPTY STATE -->
+        <div class="max-w-xl mx-auto text-center bg-white/5 border border-white/10 rounded-[2rem] p-12 backdrop-blur-xl">
+
+            <div class="text-6xl mb-6">
+                🔍
+            </div>
+
+            <h2 class="text-3xl font-bold mb-4">
+                No devices found
+            </h2>
+
+            <p class="text-slate-400 mb-8">
+                Try changing your brand or increasing your budget to discover more devices.
+            </p>
+
+            <a
+                href="/mobile-explorer/"
+                class="inline-block bg-blue-600 hover:bg-blue-500 text-white px-7 py-4 rounded-2xl font-semibold transition"
+            >
+                Search Again
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+<script>
+    const buttons = document.querySelectorAll(".favorite-btn");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", function () {
+
+            const deviceId = this.dataset.deviceId;
+
+            if (!deviceId) {
+                return;
+            }
+
+            fetch(`/add-to-favorites/${deviceId}/`, {
+                method: "GET",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    this.innerText = "Added";
+                    this.classList.remove("bg-blue-600", "hover:bg-blue-500");
+                    this.classList.add("bg-green-600", "cursor-not-allowed");
+                    this.disabled = true;
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert("Something went wrong");
+            });
+
+        });
+    });
+</script>
+
+{% endblock %}

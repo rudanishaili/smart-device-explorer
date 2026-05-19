@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="relative min-h-screen px-6 py-16 overflow-hidden">
+
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-32 left-10 w-80 h-80 bg-green-600/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-32 right-10 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+
+        <div class="text-center mb-14">
+            <p class="text-blue-400 font-semibold mb-3">
+                SMART COMPARISON
+            </p>
+
+            <h1 class="text-5xl font-bold mb-5">
+                Laptop Comparison
+            </h1>
+
+            <p class="text-slate-400 text-lg">
+                Compare your shortlisted laptops side-by-side and let AI choose the best one.
+            </p>
+        </div>
+
+        {% if best_device %}
+        <div class="relative mb-12">
+
+            <div class="absolute -inset-1 bg-gradient-to-r from-green-500 to-blue-600 rounded-[2rem] blur opacity-25"></div>
+
+            <div class="relative bg-white/5 border border-white/10 rounded-[2rem] p-8 backdrop-blur-xl text-center shadow-2xl">
+
+                <h2 class="text-3xl font-bold text-green-400 mb-4">
+                    🏆 AI Recommended Winner
+                </h2>
+
+                <p class="text-4xl font-bold mb-4">
+                    {{ best_device.name }}
+                </p>
+
+                <p class="text-slate-400 mb-4">
+                    Selected based on RAM, storage, and price-to-value score.
+                </p>
+
+                <span class="inline-block bg-green-500/10 text-green-400 px-5 py-3 rounded-full font-bold">
+                    AI Score: {{ best_score }}
+                </span>
+
+            </div>
+
+        </div>
+        {% endif %}
+
+        <div class="overflow-x-auto bg-white/5 border border-white/10 rounded-[2rem] shadow-2xl backdrop-blur-xl p-6">
+
+            <table class="w-full border-collapse min-w-[850px]">
+
+                <tr class="border-b border-white/10">
+
+                    <th class="text-left p-5 text-xl text-slate-300">
+                        Feature
+                    </th>
+
+                    {% for device in devices %}
+                    <th class="p-5 text-center">
+
+                        <div class="h-48 flex items-center justify-center mb-5 bg-slate-950/50 rounded-3xl border border-white/5">
+
+                            <img
+                                src="{{ device.image_url }}"
+                                class="max-h-40 object-contain"
+                            >
+
+                        </div>
+
+                        <h2 class="text-xl font-bold mb-4">
+                            {{ device.name }}
+                        </h2>
+
+                        <a
+                            href="{{ device.source_url }}"
+                            target="_blank"
+                            class="inline-block bg-orange-500 hover:bg-orange-400 text-white px-5 py-3 rounded-2xl font-semibold transition"
+                        >
+                            Buy Now
+                        </a>
+
+                    </th>
+                    {% endfor %}
+
+                </tr>
+
+                <tr class="border-b border-white/10">
+                    <td class="p-5 font-bold text-slate-400">Price</td>
+                    {% for device in devices %}
+                    <td class="p-5 text-center font-semibold">
+                        ₹{{ device.price }}
+                    </td>
+                    {% endfor %}
+                </tr>
+
+                <tr class="border-b border-white/10">
+                    <td class="p-5 font-bold text-slate-400">RAM</td>
+                    {% for device in devices %}
+                    <td class="p-5 text-center">
+                        {{ device.ram }}
+                    </td>
+                    {% endfor %}
+                </tr>
+
+                <tr class="border-b border-white/10">
+                    <td class="p-5 font-bold text-slate-400">Storage</td>
+                    {% for device in devices %}
+                    <td class="p-5 text-center">
+                        {{ device.storage }}
+                    </td>
+                    {% endfor %}
+                </tr>
+
+                <tr class="border-b border-white/10">
+                    <td class="p-5 font-bold text-slate-400">Processor</td>
+                    {% for device in devices %}
+                    <td class="p-5 text-center text-slate-300">
+                        {{ device.processor }}
+                    </td>
+                    {% endfor %}
+                </tr>
+
+                <tr class="border-b border-white/10">
+                    <td class="p-5 font-bold text-slate-400">Display</td>
+                    {% for device in devices %}
+                    <td class="p-5 text-center text-slate-300">
+                        {{ device.display }}
+                    </td>
+                    {% endfor %}
+                </tr>
+
+                <tr class="border-b border-white/10">
+                    <td class="p-5 font-bold text-slate-400">Camera</td>
+                    {% for device in devices %}
+                    <td class="p-5 text-center text-slate-300">
+                        {{ device.camera }}
+                    </td>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <td class="p-5 font-bold text-slate-400">Battery</td>
+                    {% for device in devices %}
+                    <td class="p-5 text-center text-slate-300">
+                        {{ device.battery }}
+                    </td>
+                    {% endfor %}
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
