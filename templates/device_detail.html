@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="relative min-h-screen px-6 py-16 overflow-hidden">
+
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-32 left-10 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-32 right-10 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+
+        <a href="/recommendations/" class="text-blue-400 hover:text-blue-300 font-semibold">
+            ← Back to Recommendations
+        </a>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-10 items-center">
+
+            <!-- IMAGE -->
+            <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 backdrop-blur-xl shadow-2xl">
+
+                <img
+                    src="{{ device.image_url }}"
+                    alt="{{ device.name }}"
+                    class="w-full h-[480px] object-contain"
+                >
+
+            </div>
+
+            <!-- DETAILS -->
+            <div>
+
+                <p class="text-blue-400 font-semibold mb-3">
+                    {{ device.brand }}
+                </p>
+
+                <h1 class="text-6xl font-bold mb-6">
+                    {{ device.name }}
+                </h1>
+
+                <p class="text-4xl font-bold text-green-400 mb-8">
+                    ₹{{ device.price }}
+                </p>
+
+                <div class="grid grid-cols-2 gap-4 mb-8">
+
+                    {% if device.ram %}
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                        <p class="text-slate-500 text-sm">RAM</p>
+                        <p class="text-2xl font-bold">{{ device.ram }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if device.storage %}
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                        <p class="text-slate-500 text-sm">Storage</p>
+                        <p class="text-2xl font-bold">{{ device.storage }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if device.battery %}
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                        <p class="text-slate-500 text-sm">Battery</p>
+                        <p class="text-xl font-bold">{{ device.battery }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if device.display %}
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                        <p class="text-slate-500 text-sm">Display</p>
+                        <p class="text-xl font-bold">{{ device.display }}</p>
+                    </div>
+                    {% endif %}
+
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+
+                    {% if is_favorite %}
+
+                    <button
+                        class="bg-green-600 text-white px-7 py-4 rounded-2xl font-semibold cursor-not-allowed"
+                        disabled
+                    >
+                        Added to Favorites
+                    </button>
+
+                    {% else %}
+
+                    <button
+                        data-device-id="{{ device.id }}"
+                        class="favorite-btn bg-blue-600 hover:bg-blue-500 text-white px-7 py-4 rounded-2xl font-semibold transition"
+                    >
+                        Add to Favorites
+                    </button>
+
+                    {% endif %}
+
+                    <a
+                        href="{{ device.source_url }}"
+                        target="_blank"
+                        class="bg-orange-500 hover:bg-orange-400 text-white px-7 py-4 rounded-2xl font-semibold transition text-center"
+                    >
+                        Buy Now
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FULL SPECS -->
+        <div class="mt-16 bg-white/5 border border-white/10 rounded-[2rem] p-8 backdrop-blur-xl">
+
+            <h2 class="text-3xl font-bold mb-8">
+                Full Specifications
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-300">
+
+                {% if device.processor %}
+                <div class="border-b border-white/10 pb-4">
+                    <p class="text-slate-500">Processor</p>
+                    <p class="font-semibold">{{ device.processor }}</p>
+                </div>
+                {% endif %}
+
+                {% if device.camera %}
+                <div class="border-b border-white/10 pb-4">
+                    <p class="text-slate-500">Camera</p>
+                    <p class="font-semibold">{{ device.camera }}</p>
+                </div>
+                {% endif %}
+
+                {% if device.display %}
+                <div class="border-b border-white/10 pb-4">
+                    <p class="text-slate-500">Display</p>
+                    <p class="font-semibold">{{ device.display }}</p>
+                </div>
+                {% endif %}
+
+                {% if device.battery %}
+                <div class="border-b border-white/10 pb-4">
+                    <p class="text-slate-500">Battery</p>
+                    <p class="font-semibold">{{ device.battery }}</p>
+                </div>
+                {% endif %}
+
+                {% if device.ram %}
+                <div class="border-b border-white/10 pb-4">
+                    <p class="text-slate-500">RAM</p>
+                    <p class="font-semibold">{{ device.ram }}</p>
+                </div>
+                {% endif %}
+
+                {% if device.storage %}
+                <div class="border-b border-white/10 pb-4">
+                    <p class="text-slate-500">Storage</p>
+                    <p class="font-semibold">{{ device.storage }}</p>
+                </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+    const button = document.querySelector(".favorite-btn");
+
+    if (button) {
+        button.addEventListener("click", function () {
+
+            const deviceId = this.dataset.deviceId;
+
+            fetch(`/add-to-favorites/${deviceId}/`, {
+                method: "GET",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    this.innerText = "Added to Favorites";
+                    this.classList.remove("bg-blue-600", "hover:bg-blue-500");
+                    this.classList.add("bg-green-600", "cursor-not-allowed");
+                    this.disabled = true;
+                } else {
+                    alert(data.message);
+                }
+            });
+
+        });
+    }
+</script>
+
+{% endblock %}

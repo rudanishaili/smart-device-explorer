@@ -20,4 +20,6 @@ urlpatterns = [
     ),
 
     path('compare/', views.compare_devices, name='compare'),
+
+    path('device/<int:device_id>/', views.device_detail, name='device_detail'),
 ]

@@ -196,3 +196,25 @@ def compare_devices(request):
             'best_score': round(best_score, 2)
         }
     )
+
+
+def device_detail(request, device_id):
+
+    device = Device.objects.get(id=device_id)
+
+    is_favorite = False
+
+    if request.user.is_authenticated:
+        is_favorite = Favorite.objects.filter(
+            user=request.user,
+            device=device
+        ).exists()
+
+    return render(
+        request,
+        'device_detail.html',
+        {
+            'device': device,
+            'is_favorite': is_favorite
+        }
+    )

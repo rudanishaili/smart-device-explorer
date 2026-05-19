@@ -2,132 +2,216 @@
 
 {% block content %}
 
-<section class="py-20 px-6 bg-gray-100 min-h-screen">
+<section class="relative min-h-screen px-6 py-16 overflow-hidden">
+
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-32 left-10 w-80 h-80 bg-red-600/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-32 right-10 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
+    </div>
 
     <div class="max-w-7xl mx-auto">
 
-        <h1 class="text-5xl font-bold text-center mb-14">
-            Your Favorite Devices
-        </h1>
+        <!-- HEADER -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-14">
 
-        <a
-            href="/recommendations/"
-            class="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700"
-        >
-            ← Back to Recommended Devices
-        </a>
+            <div>
+                <p class="text-blue-400 font-semibold mb-2">
+                    SAVED DEVICES
+                </p>
 
-        <form  id="compare-form" method="GET" action="/compare/">
+                <h1 class="text-5xl font-bold">
+                    Your Favorite Devices
+                </h1>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <p class="text-slate-400 mt-4">
+                    Select 2 to 3 phones and compare them using AI scoring.
+                </p>
+            </div>
 
-            {% for item in favorite_items %}
+            <a
+                href="/recommendations/"
+                class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-2xl font-semibold transition hover:-translate-y-1"
+            >
+                ← Recommended Devices
+            </a>
 
-            <div id="favorite-card-{{ item.device.id }}" class="bg-white rounded-3xl shadow-xl p-6">
+        </div>
 
-                <label class="flex items-center gap-3 mb-4 font-semibold">
-                    <input
-                        type="checkbox"
-                        name="devices"
-                        value="{{ item.device.id }}"
-                        class="w-5 h-5"
-                    >
-                    Select for comparison
-                </label>
+        <form id="compare-form" method="GET" action="/compare/">
 
-                <img
-                    src="{{ item.device.image_url }}"
-                    class="w-full h-64 object-contain mb-6"
+            {% if favorite_items %}
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+                {% for item in favorite_items %}
+
+                <div
+                    id="favorite-card-{{ item.device.id }}"
+                    class="group relative bg-white/5 border border-white/10 rounded-[2rem] p-6 backdrop-blur-xl hover:bg-white/10 transition hover:-translate-y-2 shadow-xl"
                 >
 
-                <h2 class="text-2xl font-bold mb-4">
-                    {{ item.device.name }}
-                </h2>
+                    <!-- SELECT -->
+                    <label class="flex items-center gap-3 mb-5 cursor-pointer">
 
-                <p class="mb-2">
-                    <strong>Price:</strong>
-                    ₹{{ item.device.price }}
-                </p>
+                        <input
+                            type="checkbox"
+                            name="devices"
+                            value="{{ item.device.id }}"
+                            class="w-5 h-5 accent-blue-600"
+                        >
 
-               {% if item.device.ram %}
-                <p class="mb-2">
-                    <strong>RAM:</strong>
-                    {{ item.device.ram }}
-                </p>
-                {% endif %}
+                        <span class="text-slate-300 font-semibold">
+                            Select for comparison
+                        </span>
 
-                {% if item.device.storage %}
-                <p class="mb-2">
-                    <strong>Storage:</strong>
-                    {{ item.device.storage }}
-                </p>
-                {% endif %}
-                
-                {% if item.device.processor %}
-                <p class="mb-2">
-                    <strong>Processor:</strong>
-                    {{ item.device.processor }}
-                </p>
-                {% endif %}
+                    </label>
 
-                {% if item.device.display %}
-                <p class="mb-2">
-                    <strong>Display:</strong>
-                    {{ item.device.display }}
-                </p>
-                {% endif %}
+                    <!-- IMAGE -->
+                    <div class="h-64 flex items-center justify-center mb-6 bg-slate-950/50 rounded-3xl border border-white/5">
 
-                {% if item.device.camera %}
-                <p class="mb-2">
-                    <strong>Camera:</strong>
-                    {{ item.device.camera }}
-                </p>
-                {% endif %}
+                        <img
+                            src="{{ item.device.image_url }}"
+                            class="max-h-56 object-contain group-hover:scale-105 transition duration-500"
+                        >
 
-                {% if item.device.battery %}
-                <p class="mb-2">
-                    <strong>Battery:</strong>
-                    {{ item.device.battery }}
-                </p>
-                {% endif %}
+                    </div>
+
+                    <!-- TITLE -->
+                    <h2 class="text-2xl font-bold mb-2">
+                        {{ item.device.name }}
+                    </h2>
+
+                    <a
+                        href="/device/{{ item.device.id }}/"
+                        class="inline-block text-blue-400 hover:text-blue-300 font-semibold mb-4"
+                    >
+                        View Details →
+                    </a>
+
+                    <p class="text-slate-500 mb-6">
+                        {{ item.device.brand }}
+                    </p>
+
+                    <!-- SPECS -->
+                    <div class="space-y-3 text-sm">
+
+                        <div class="flex justify-between border-b border-white/5 pb-2">
+                            <span class="text-slate-500">Price</span>
+                            <span class="text-white font-semibold">₹{{ item.device.price }}</span>
+                        </div>
+
+                        {% if item.device.ram %}
+                        <div class="flex justify-between border-b border-white/5 pb-2">
+                            <span class="text-slate-500">RAM</span>
+                            <span class="text-slate-300">{{ item.device.ram }}</span>
+                        </div>
+                        {% endif %}
+
+                        {% if item.device.storage %}
+                        <div class="flex justify-between border-b border-white/5 pb-2">
+                            <span class="text-slate-500">Storage</span>
+                            <span class="text-slate-300">{{ item.device.storage }}</span>
+                        </div>
+                        {% endif %}
+
+                        {% if item.device.processor %}
+                        <div class="pt-2">
+                            <p class="text-slate-500 mb-1">Processor</p>
+                            <p class="text-slate-300">{{ item.device.processor }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if item.device.display %}
+                        <div class="pt-2">
+                            <p class="text-slate-500 mb-1">Display</p>
+                            <p class="text-slate-300">{{ item.device.display }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if item.device.camera %}
+                        <div class="pt-2">
+                            <p class="text-slate-500 mb-1">Camera</p>
+                            <p class="text-slate-300">{{ item.device.camera }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if item.device.battery %}
+                        <div class="pt-2">
+                            <p class="text-slate-500 mb-1">Battery</p>
+                            <p class="text-slate-300">{{ item.device.battery }}</p>
+                        </div>
+                        {% endif %}
+
+                    </div>
+
+                    <!-- ACTIONS -->
+                    <div class="mt-7 grid grid-cols-1 gap-3">
+
+                        <button
+                            type="button"
+                            data-device-id="{{ item.device.id }}"
+                            class="remove-favorite-btn w-full bg-red-500/10 text-red-400 border border-red-500/20 py-3 rounded-2xl font-semibold hover:bg-red-500 hover:text-white transition"
+                        >
+                            Remove
+                        </button>
+
+                        <a
+                            href="{{ item.device.source_url }}"
+                            target="_blank"
+                            class="w-full text-center bg-orange-500 hover:bg-orange-400 text-white py-3 rounded-2xl font-semibold transition"
+                        >
+                            Buy Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <!-- COMPARE BUTTON -->
+            <div class="sticky bottom-6 z-30 mt-12 flex justify-center">
 
                 <button
-                    type="button"
-                    data-device-id="{{ item.device.id }}"
-                    class="remove-favorite-btn block w-full text-center mt-6 bg-red-600 text-white py-3 rounded-xl hover:bg-red-700"
+                    type="submit"
+                    class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-2xl font-bold shadow-2xl shadow-blue-500/25 hover:-translate-y-1 transition"
                 >
-                    Remove
+                    Compare Selected Devices
                 </button>
 
+            </div>
+
+            {% else %}
+
+            <!-- EMPTY STATE -->
+            <div class="max-w-xl mx-auto text-center bg-white/5 border border-white/10 rounded-[2rem] p-12 backdrop-blur-xl">
+
+                <div class="text-6xl mb-6">
+                    ❤️
+                </div>
+
+                <h2 class="text-3xl font-bold mb-4">
+                    No favorites yet
+                </h2>
+
+                <p class="text-slate-400 mb-8">
+                    Add phones from recommendations to compare them later.
+                </p>
+
                 <a
-                    href="{{ item.device.source_url }}"
-                    target="_blank"
-                    class="block text-center mt-4 bg-orange-500 text-white py-3 rounded-xl hover:bg-orange-600"
+                    href="/mobile-explorer/"
+                    class="inline-block bg-blue-600 hover:bg-blue-500 text-white px-7 py-4 rounded-2xl font-semibold transition"
                 >
-                    Buy Now
+                    Explore Mobiles
                 </a>
 
             </div>
 
-            {% empty %}
+            {% endif %}
 
-            <p class="text-xl">
-                No favorite devices added yet.
-            </p>
-
-            {% endfor %}
-
-        </div>
-
-         <div class="text-center mt-12">
-        <button
-            type="submit"
-            class="bg-indigo-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-indigo-700"
-        >
-            Compare Selected Devices
-        </button>
-    </div>
-    </form>
+        </form>
 
     </div>
 
@@ -168,7 +252,6 @@
 </script>
 
 <script>
-
     const compareForm = document.getElementById("compare-form");
 
     compareForm.addEventListener("submit", function(event) {
@@ -178,23 +261,16 @@
         );
 
         if (checkedDevices.length < 2) {
-
             event.preventDefault();
-
             alert("Please select at least 2 devices for comparison.");
-
         }
 
         else if (checkedDevices.length > 3) {
-
             event.preventDefault();
-
             alert("You can compare maximum 3 devices only.");
-
         }
 
     });
-
 </script>
 
-{% endblock %}  
+{% endblock %}

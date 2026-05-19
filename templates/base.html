@@ -3,60 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <title>Smart Device Explorer</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+        body {
+            background: #020617;
+        }
+
+        .nav-blur {
+            background: rgba(2, 6, 23, 0.72);
+            backdrop-filter: blur(16px);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0%;
+            height: 2px;
+            background: #3B82F6;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+    </style>
+
 </head>
-<body class="bg-gray-100 text-gray-900">
 
-    <nav class="bg-white shadow px-8 py-4 flex justify-between">
-        <h1 class="text-2xl font-bold text-blue-600">Smart Device Explorer</h1>
-        <div class="space-x-4">
+<body class="text-slate-100 min-h-screen">
 
-    <a href="/" class="hover:text-blue-600">
-        Home
-    </a>
+    <!-- NAVBAR -->
+    <nav class="nav-blur border-b border-white/10 sticky top-0 z-50">
 
-    {% if user.is_authenticated %}
+        <div class="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
 
-        <span class="text-gray-700 font-semibold">
-            Hello, {{ user.username }}
+            <!-- LOGO -->
+            <a href="/" class="flex items-center gap-4 group">
+
+    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-xl shadow-blue-500/30 group-hover:scale-105 transition">
+
+        <span class="text-2xl font-black text-white">
+            Æ
         </span>
 
-        <a href="/favorites/" class="hover:text-blue-600">
-            Favorites
-        </a>
+    </div>
 
-        <a href="/users/logout/" class="text-red-600 hover:text-red-800">
-            Logout
-        </a>
+    <div>
 
-    {% else %}
+        <h1 class="text-3xl font-black tracking-tight text-white leading-none">
+            Aether
+        </h1>
 
-        <a href="/users/login/" class="hover:text-blue-600">
-            Login
-        </a>
+        <p class="text-sm text-slate-400 mt-1">
+            Mobile Intelligence
+        </p>
 
-        <a href="/users/register/" class="hover:text-blue-600">
-            Register
-        </a>
+    </div>
 
-    {% endif %}
+</a>
 
-</div>
+            <!-- LINKS -->
+            <div class="flex items-center gap-8 text-[15px] font-medium">
+
+                <a href="/" class="nav-link text-slate-300 hover:text-white transition">
+                    Home
+                </a>
+
+                {% if user.is_authenticated %}
+
+                    <a href="/mobile-explorer/" class="nav-link text-slate-300 hover:text-white transition">
+                        Explore
+                    </a>
+
+                    <a href="/favorites/" class="nav-link text-slate-300 hover:text-white transition">
+                        Favorites
+                    </a>
+
+                    <span class="text-slate-500">
+                        Hello,
+                        <span class="text-white">
+                            {{ user.username }}
+                        </span>
+                    </span>
+
+                    <a
+                        href="/users/logout/"
+                        class="px-5 py-2 rounded-full border border-red-500/30 text-red-400 hover:bg-red-500 hover:text-white transition duration-300"
+                    >
+                        Logout
+                    </a>
+
+                {% else %}
+
+                    <a href="/users/login/" class="nav-link text-slate-300 hover:text-white transition">
+                        Login
+                    </a>
+
+                    <a
+                        href="/users/register/"
+                        class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-full transition duration-300 shadow-lg shadow-blue-500/20"
+                    >
+                        Register
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
     </nav>
 
+    <!-- PAGE CONTENT -->
     <main>
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer class="bg-gray-900 text-white text-center py-4 mt-10">
-        <p>
-            <a href="/admin/">
+  <footer class="border-t border-white/5 mt-20 bg-[#020617]">
+
+    <div class="max-w-7xl mx-auto px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
+
+        <!-- LEFT -->
+        <div class="flex items-center gap-3 text-sm text-slate-500">
+
+            <a
+                href="/admin/"
+                class="hover:text-blue-400 transition"
+            >
                 ©
             </a>
-            2026 Smart Device Explorer | AI Powered Device Recommendation
+
+            <span>
+                2026 Smart Device Explorer
+            </span>
+
+        </div>
+
+        <!-- CENTER -->
+        <div class="hidden md:block w-24 h-px bg-white/10"></div>
+
+        <!-- RIGHT -->
+        <p class="text-sm text-slate-600">
+            AI Powered Mobile Recommendation Platform
         </p>
-    </footer>
+
+    </div>
+
+</footer>
 
 </body>
 </html>

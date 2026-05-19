@@ -2,47 +2,176 @@
 
 {% block content %}
 
-<div class="flex justify-center items-center min-h-screen">
-    
-    <form method="POST" class="bg-white p-8 rounded-xl shadow-md w-96">
-        {% csrf_token %}
+<section class="relative min-h-screen flex items-center justify-center px-6 py-8 overflow-hidden">
 
-        <h2 class="text-3xl font-bold mb-6 text-center">
-            Login
-        </h2>
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-24 left-16 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-24 right-16 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+    </div>
 
-        <input 
-            type="text"
-            name="username"
-            placeholder="Username"
-            class="w-full border p-3 rounded mb-4"
-            required
-        >
+    <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
-        <input 
-            type="password"
-            name="password"
-            placeholder="Password"
-            class="w-full border p-3 rounded mb-4"
-            required
-        >
+        <!-- LEFT VISUAL PANEL -->
+        <div class="hidden lg:block relative">
 
-        <button 
-            type="submit"
-            class="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700"
-        >
-            Login
-        </button>
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-[2rem] blur opacity-25"></div>
 
-        <p class="mt-4 text-center">
-            Don’t have an account?
-            <a href="/users/register/" class="text-blue-600">
-                Register now
-            </a>
-        </p>
+            <div class="relative bg-white/5 border border-white/10 rounded-[2rem] p-10 backdrop-blur-2xl shadow-2xl">
 
-    </form>
+                <div class="flex items-center justify-between mb-10">
+                    <div>
+                        <p class="text-slate-400 text-sm">Smart Device Explorer</p>
+                        <h2 class="text-3xl font-bold mt-1">Your AI mobile workspace</h2>
+                    </div>
 
-</div>
+                    <span class="px-4 py-2 rounded-full bg-green-500/10 text-green-400 text-sm font-semibold">
+                        Online
+                    </span>
+                </div>
+
+                <!-- PHONE MOCKUP -->
+                <div class="relative mx-auto w-64 h-[460px] rounded-[3rem] bg-slate-950 border border-white/10 shadow-2xl p-4">
+
+                    <div class="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full"></div>
+
+                    <div class="h-full rounded-[2.4rem] bg-gradient-to-b from-slate-900 to-slate-950 border border-white/10 p-5 pt-10">
+
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <p class="text-xs text-slate-500">AI Match</p>
+                                <h3 class="text-xl font-bold">Galaxy S24</h3>
+                            </div>
+
+                            <div class="w-11 h-11 rounded-2xl bg-blue-500/20 flex items-center justify-center">
+                                📱
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-500/10 rounded-2xl p-4 mb-4">
+                            <p class="text-sm text-blue-300">Match Score</p>
+                            <p class="text-4xl font-bold mt-1">92%</p>
+                        </div>
+
+                        <div class="space-y-3">
+
+                            <div class="flex justify-between bg-white/5 rounded-xl p-3">
+                                <span class="text-slate-400">RAM</span>
+                                <span class="font-semibold">12GB</span>
+                            </div>
+
+                            <div class="flex justify-between bg-white/5 rounded-xl p-3">
+                                <span class="text-slate-400">Storage</span>
+                                <span class="font-semibold">256GB</span>
+                            </div>
+
+                            <div class="flex justify-between bg-white/5 rounded-xl p-3">
+                                <span class="text-slate-400">Budget Fit</span>
+                                <span class="text-green-400 font-semibold">High</span>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-6 h-24 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-4">
+                            <p class="text-sm text-blue-100">Ready to compare favorites</p>
+                            <p class="text-2xl font-bold mt-1">3 devices</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- FLOATING BADGES -->
+                <div class="absolute -left-5 top-32 bg-slate-900 border border-white/10 rounded-2xl px-5 py-4 shadow-xl">
+                    <p class="text-sm text-slate-400">Saved Devices</p>
+                    <p class="text-2xl font-bold">12+</p>
+                </div>
+
+                <div class="absolute -right-5 bottom-28 bg-slate-900 border border-white/10 rounded-2xl px-5 py-4 shadow-xl">
+                    <p class="text-sm text-slate-400">AI Ranking</p>
+                    <p class="text-2xl font-bold text-blue-400">Active</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- LOGIN CARD -->
+        <div class="relative">
+
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-[2rem] blur opacity-20"></div>
+
+            <div class="relative bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[2rem] p-10 shadow-2xl">
+
+                <div class="text-center mb-10">
+
+                    <div class="w-16 h-16 rounded-3xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mx-auto mb-6">
+                        🔐
+                    </div>
+
+                    <h2 class="text-4xl font-bold mb-3">
+                        Welcome Back
+                    </h2>
+
+                    <p class="text-slate-400">
+                        Login to continue your smart device journey.
+                    </p>
+
+                </div>
+
+                <form method="POST" class="space-y-6">
+
+                    {% csrf_token %}
+
+                    <div>
+                        <label class="block mb-3 text-sm text-slate-300 font-medium">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="Enter your username"
+                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block mb-3 text-sm text-slate-300 font-medium">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition"
+                            required
+                        >
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-2xl text-lg font-semibold shadow-xl shadow-blue-500/20 transition hover:-translate-y-1"
+                    >
+                        Login
+                    </button>
+
+                </form>
+
+                <p class="mt-8 text-center text-slate-400">
+                    Don’t have an account?
+                    <a href="/users/register/" class="text-blue-400 hover:text-blue-300 font-semibold">
+                        Register now
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}
