@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Smart Device Explorer</title>
+    <title>Aether | Device Intelligence</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-
         body {
             background: #020617;
+            overflow-x: hidden;
         }
 
         .nav-blur {
             background: rgba(2, 6, 23, 0.72);
-            backdrop-filter: blur(16px);
+            backdrop-filter: blur(18px);
         }
 
         .nav-link {
@@ -28,12 +28,206 @@
             bottom: -6px;
             width: 0%;
             height: 2px;
-            background: #3B82F6;
-            transition: 0.3s;
+            background: linear-gradient(90deg, #3B82F6, #A855F7);
+            transition: 0.35s ease;
         }
 
         .nav-link:hover::after {
             width: 100%;
+        }
+
+        @keyframes shineMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .shine-text {
+            background: linear-gradient(90deg, #ffffff, #60a5fa, #a855f7, #ffffff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shineMove 5s ease infinite;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-14px); }
+        }
+
+        .float-slow {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .rotate-slow {
+            animation: rotateSlow 18s linear infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
+            }
+            50% {
+                box-shadow: 0 0 45px rgba(168, 85, 247, 0.45);
+            }
+        }
+
+        .pulse-glow {
+            animation: pulseGlow 3.5s ease-in-out infinite;
+        }
+
+        @keyframes borderFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .animated-border {
+            position: relative;
+        }
+
+        .animated-border::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(120deg, #3B82F6, #8B5CF6, #06B6D4, #3B82F6);
+            background-size: 200% 200%;
+            animation: borderFlow 5s linear infinite;
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .soft-reveal {
+            animation: softReveal 0.8s ease-out both;
+        }
+
+        @keyframes softReveal {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .living-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -20;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(147, 51, 234, 0.18), transparent 35%),
+                #020617;
+        }
+
+        .living-bg span {
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            border-radius: 9999px;
+            filter: blur(80px);
+            opacity: 0.22;
+            animation: floatSlow 8s ease-in-out infinite;
+        }
+
+        @keyframes orbitSpin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .orbit-spin {
+            animation: orbitSpin 18s linear infinite;
+        }
+
+        .orbit-spin-reverse {
+            animation: orbitSpin 24s linear infinite reverse;
+        }
+
+        @keyframes rocketFly {
+
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+
+            20% {
+                transform: translate(-300px, -120px) scale(1.15) rotate(-20deg);
+            }
+
+            40% {
+                transform: translate(250px, -260px) scale(1.2) rotate(18deg);
+            }
+
+            60% {
+                transform: translate(420px, 80px) scale(1.1) rotate(35deg);
+            }
+
+            80% {
+                transform: translate(-180px, 180px) scale(1.05) rotate(-18deg);
+            }
+
+            100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+        }
+
+        .rocket-fly {
+            animation: rocketFly 5s ease-in-out infinite;
+        }
+
+
+        @keyframes rocketLaunch {
+
+            0% {
+                transform: translate(-120px, 120px) rotate(-35deg) scale(0.8);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            25% {
+                transform: translate(220px, -80px) rotate(15deg) scale(1);
+            }
+
+            45% {
+                transform: translate(520px, 120px) rotate(35deg) scale(1.1);
+            }
+
+            65% {
+                transform: translate(180px, 320px) rotate(-20deg) scale(0.95);
+            }
+
+            85% {
+                transform: translate(-60px, 80px) rotate(-5deg) scale(1);
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .rocket-launch {
+            animation: rocketLaunch 4.5s ease-in-out forwards;
         }
 
     </style>
@@ -41,6 +235,13 @@
 </head>
 
 <body class="text-slate-100 min-h-screen">
+
+    <!-- LIVING GLOBAL BACKGROUND -->
+    <div class="living-bg">
+        <span class="bg-blue-600 left-[8%] top-[12%]"></span>
+        <span class="bg-purple-600 right-[10%] bottom-[12%]" style="animation-delay: 1.5s;"></span>
+        <span class="bg-cyan-500 left-[45%] bottom-[5%]" style="animation-delay: 3s;"></span>
+    </div>
 
     <!-- NAVBAR -->
     <nav class="nav-blur border-b border-white/10 sticky top-0 z-50">
@@ -50,27 +251,29 @@
             <!-- LOGO -->
             <a href="/" class="flex items-center gap-4 group">
 
-    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-xl shadow-blue-500/30 group-hover:scale-105 transition">
+                <div class="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-xl shadow-blue-500/30 group-hover:scale-105 transition pulse-glow">
 
-        <span class="text-2xl font-black text-white">
-            Æ
-        </span>
+                    <div class="absolute inset-0 rounded-2xl border border-white/20 rotate-slow"></div>
 
-    </div>
+                    <span class="relative text-2xl font-black text-white">
+                        Æ
+                    </span>
 
-    <div>
+                </div>
 
-        <h1 class="text-3xl font-black tracking-tight text-white leading-none">
-            Aether
-        </h1>
+                <div>
 
-        <p class="text-sm text-slate-400 mt-1">
-            Mobile Intelligence
-        </p>
+                    <h1 class="text-3xl font-black tracking-tight leading-none shine-text">
+                        Aether
+                    </h1>
 
-    </div>
+                    <p class="text-sm text-slate-400 mt-1">
+                        Device Intelligence
+                    </p>
 
-</a>
+                </div>
+
+            </a>
 
             <!-- LINKS -->
             <div class="flex items-center gap-8 text-[15px] font-medium">
@@ -81,26 +284,15 @@
 
                 {% if user.is_authenticated %}
 
-
-                  <div class="flex items-center gap-4">
-
-                    <a
-                        href="/favorites/"
-                        class="hover:text-blue-400 transition"
-                    >
+                    <a href="/favorites/" class="nav-link text-slate-300 hover:text-blue-400 transition">
                         Mobile Favorites
                     </a>
 
-                    <a
-                        href="/laptop-favorites/"
-                        class="hover:text-purple-400 transition"
-                    >
+                    <a href="/laptop-favorites/" class="nav-link text-slate-300 hover:text-purple-400 transition">
                         Laptop Favorites
                     </a>
 
-                </div>
-
-                    <span class="text-slate-500">
+                    <span class="hidden xl:inline text-slate-500">
                         Hello,
                         <span class="text-white">
                             {{ user.username }}
@@ -122,7 +314,7 @@
 
                     <a
                         href="/users/register/"
-                        class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-full transition duration-300 shadow-lg shadow-blue-500/20"
+                        class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-full transition duration-300 shadow-lg shadow-blue-500/20 hover:-translate-y-1"
                     >
                         Register
                     </a>
@@ -136,38 +328,66 @@
     </nav>
 
     <!-- PAGE CONTENT -->
-    <main>
+    <main class="soft-reveal">
         {% block content %}
         {% endblock %}
     </main>
 
-  <footer class="border-t border-white/5 mt-20 bg-[#020617]">
+    <!-- FOOTER -->
+<footer class="relative mt-24 overflow-hidden border-t border-white/10">
 
-    <div class="max-w-7xl mx-auto px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
+    <!-- GLOW EFFECTS -->
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-cyan-500/5 to-purple-600/10"></div>
+
+    <div class="absolute -top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
+
+    <div class="absolute -bottom-20 right-20 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"></div>
+
+    <div class="relative max-w-7xl mx-auto px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
 
         <!-- LEFT -->
-        <div class="flex items-center gap-3 text-sm text-slate-500">
+        <div class="flex items-center gap-4">
 
             <a
                 href="/admin/"
-                class="hover:text-blue-400 transition"
+                class="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-blue-500/20 hover:border-blue-500/30 transition"
             >
                 ©
             </a>
 
-            <span>
-                2026 Smart Device Explorer
-            </span>
+            <div>
+
+                <h3 class="text-lg font-bold shine-text">
+                    Aether
+                </h3>
+
+                <p class="text-sm text-slate-500">
+                    2026 Intelligent Device Platform
+                </p>
+
+            </div>
 
         </div>
 
-        <!-- CENTER -->
-        <div class="hidden md:block w-24 h-px bg-white/10"></div>
+        <!-- CENTER LINE -->
+        <div class="hidden lg:block w-40 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
         <!-- RIGHT -->
-        <p class="text-sm text-slate-600">
-            AI Powered Mobile Recommendation Platform
-        </p>
+        <div class="flex items-center gap-6">
+
+            <div class="text-right">
+
+                <p class="text-sm text-slate-400">
+                    AI Powered Recommendation System
+                </p>
+
+                <p class="text-xs text-slate-600 mt-1">
+                    Mobiles • Laptops • Intelligence
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
 

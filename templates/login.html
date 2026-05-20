@@ -4,76 +4,113 @@
 
 <section class="relative min-h-screen flex items-center justify-center px-6 py-8 overflow-hidden">
 
+    <!-- BACKGROUND EFFECTS -->
     <div class="absolute inset-0 -z-10">
-        <div class="absolute top-24 left-16 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-24 right-16 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute top-24 left-16 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl float-slow"></div>
+        <div class="absolute bottom-24 right-16 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl float-slow" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-[420px] h-[420px] border border-white/5 rounded-full rotate-slow"></div>
     </div>
 
     <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
         <!-- LEFT VISUAL PANEL -->
-        <div class="hidden lg:block relative">
+        <div class="hidden lg:block relative soft-reveal">
 
             <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-[2rem] blur opacity-25"></div>
 
-            <div class="relative bg-white/5 border border-white/10 rounded-[2rem] p-10 backdrop-blur-2xl shadow-2xl">
+            <div class="relative bg-white/5 border border-white/10 rounded-[2rem] p-10 backdrop-blur-2xl shadow-2xl animated-border">
 
                 <div class="flex items-center justify-between mb-10">
+
                     <div>
-                        <p class="text-slate-400 text-sm">Smart Device Explorer</p>
-                        <h2 class="text-3xl font-bold mt-1">Your AI mobile workspace</h2>
+                        <p class="text-slate-400 text-sm">
+                            Aether Intelligence
+                        </p>
+
+                        <h2 class="text-3xl font-black mt-1 shine-text">
+                            Your AI workspace
+                        </h2>
                     </div>
 
-                    <span class="px-4 py-2 rounded-full bg-green-500/10 text-green-400 text-sm font-semibold">
+                    <span class="px-4 py-2 rounded-full bg-green-500/10 text-green-400 text-sm font-semibold pulse-glow">
                         Online
                     </span>
+
                 </div>
 
                 <!-- PHONE MOCKUP -->
-                <div class="relative mx-auto w-64 h-[460px] rounded-[3rem] bg-slate-950 border border-white/10 shadow-2xl p-4">
+                <div class="relative mx-auto w-64 h-[460px] rounded-[3rem] bg-slate-950 border border-white/10 shadow-2xl p-4 float-slow">
 
-                    <div class="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full"></div>
+                    <div class="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full z-20"></div>
 
-                    <div class="h-full rounded-[2.4rem] bg-gradient-to-b from-slate-900 to-slate-950 border border-white/10 p-5 pt-10">
+                    <div class="h-full rounded-[2.4rem] bg-gradient-to-b from-slate-900 to-slate-950 border border-white/10 p-5 pt-10 overflow-hidden relative">
 
-                        <div class="flex justify-between items-center mb-6">
-                            <div>
-                                <p class="text-xs text-slate-500">AI Match</p>
-                                <h3 class="text-xl font-bold">Galaxy S24</h3>
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
+                        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
+
+                        <div class="relative z-10">
+
+                            <div class="flex justify-between items-center mb-6">
+
+                                <div>
+                                    <p class="text-xs text-slate-500">
+                                        AI Match
+                                    </p>
+
+                                    <h3 class="text-xl font-bold">
+                                        Galaxy S24
+                                    </h3>
+                                </div>
+
+                                <div class="w-11 h-11 rounded-2xl bg-blue-500/20 flex items-center justify-center rotate-slow">
+                                    📱
+                                </div>
+
                             </div>
 
-                            <div class="w-11 h-11 rounded-2xl bg-blue-500/20 flex items-center justify-center">
-                                📱
-                            </div>
-                        </div>
+                            <div class="bg-blue-500/10 rounded-2xl p-4 mb-4 border border-blue-500/10">
 
-                        <div class="bg-blue-500/10 rounded-2xl p-4 mb-4">
-                            <p class="text-sm text-blue-300">Match Score</p>
-                            <p class="text-4xl font-bold mt-1">92%</p>
-                        </div>
+                                <p class="text-sm text-blue-300">
+                                    Match Score
+                                </p>
 
-                        <div class="space-y-3">
+                                <p class="text-4xl font-black mt-1 shine-text">
+                                    92%
+                                </p>
 
-                            <div class="flex justify-between bg-white/5 rounded-xl p-3">
-                                <span class="text-slate-400">RAM</span>
-                                <span class="font-semibold">12GB</span>
                             </div>
 
-                            <div class="flex justify-between bg-white/5 rounded-xl p-3">
-                                <span class="text-slate-400">Storage</span>
-                                <span class="font-semibold">256GB</span>
+                            <div class="space-y-3">
+
+                                <div class="flex justify-between bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
+                                    <span class="text-slate-400">RAM</span>
+                                    <span class="font-semibold">12GB</span>
+                                </div>
+
+                                <div class="flex justify-between bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
+                                    <span class="text-slate-400">Storage</span>
+                                    <span class="font-semibold">256GB</span>
+                                </div>
+
+                                <div class="flex justify-between bg-white/5 rounded-xl p-3 hover:bg-white/10 transition">
+                                    <span class="text-slate-400">Budget Fit</span>
+                                    <span class="text-green-400 font-semibold">High</span>
+                                </div>
+
                             </div>
 
-                            <div class="flex justify-between bg-white/5 rounded-xl p-3">
-                                <span class="text-slate-400">Budget Fit</span>
-                                <span class="text-green-400 font-semibold">High</span>
+                            <div class="mt-6 h-24 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-4 pulse-glow">
+
+                                <p class="text-sm text-blue-100">
+                                    Ready to compare favorites
+                                </p>
+
+                                <p class="text-2xl font-black mt-1">
+                                    3 devices
+                                </p>
+
                             </div>
 
-                        </div>
-
-                        <div class="mt-6 h-24 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-4">
-                            <p class="text-sm text-blue-100">Ready to compare favorites</p>
-                            <p class="text-2xl font-bold mt-1">3 devices</p>
                         </div>
 
                     </div>
@@ -81,14 +118,28 @@
                 </div>
 
                 <!-- FLOATING BADGES -->
-                <div class="absolute -left-5 top-32 bg-slate-900 border border-white/10 rounded-2xl px-5 py-4 shadow-xl">
-                    <p class="text-sm text-slate-400">Saved Devices</p>
-                    <p class="text-2xl font-bold">12+</p>
+                <div class="absolute -left-5 top-32 bg-slate-900 border border-white/10 rounded-2xl px-5 py-4 shadow-xl float-slow">
+
+                    <p class="text-sm text-slate-400">
+                        Saved Devices
+                    </p>
+
+                    <p class="text-2xl font-black">
+                        12+
+                    </p>
+
                 </div>
 
-                <div class="absolute -right-5 bottom-28 bg-slate-900 border border-white/10 rounded-2xl px-5 py-4 shadow-xl">
-                    <p class="text-sm text-slate-400">AI Ranking</p>
-                    <p class="text-2xl font-bold text-blue-400">Active</p>
+                <div class="absolute -right-5 bottom-28 bg-slate-900 border border-white/10 rounded-2xl px-5 py-4 shadow-xl float-slow" style="animation-delay: 1.5s;">
+
+                    <p class="text-sm text-slate-400">
+                        AI Ranking
+                    </p>
+
+                    <p class="text-2xl font-black text-blue-400">
+                        Active
+                    </p>
+
                 </div>
 
             </div>
@@ -96,19 +147,19 @@
         </div>
 
         <!-- LOGIN CARD -->
-        <div class="relative">
+        <div class="relative soft-reveal">
 
             <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-[2rem] blur opacity-20"></div>
 
-            <div class="relative bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[2rem] p-10 shadow-2xl">
+            <div class="relative bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[2rem] p-10 shadow-2xl animated-border">
 
                 <div class="text-center mb-10">
 
-                    <div class="w-16 h-16 rounded-3xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mx-auto mb-6">
+                    <div class="w-16 h-16 rounded-3xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl mx-auto mb-6 pulse-glow">
                         🔐
                     </div>
 
-                    <h2 class="text-4xl font-bold mb-3">
+                    <h2 class="text-4xl font-black mb-3 shine-text">
                         Welcome Back
                     </h2>
 
@@ -131,7 +182,7 @@
                             type="text"
                             name="username"
                             placeholder="Enter your username"
-                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition"
+                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition focus:scale-[1.01]"
                             required
                         >
                     </div>
@@ -145,14 +196,14 @@
                             type="password"
                             name="password"
                             placeholder="Enter your password"
-                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition"
+                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition focus:scale-[1.01]"
                             required
                         >
                     </div>
 
                     <button
                         type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-2xl text-lg font-semibold shadow-xl shadow-blue-500/20 transition hover:-translate-y-1"
+                        class="relative overflow-hidden w-full bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-2xl text-lg font-semibold shadow-xl shadow-blue-500/20 transition hover:-translate-y-1"
                     >
                         Login
                     </button>

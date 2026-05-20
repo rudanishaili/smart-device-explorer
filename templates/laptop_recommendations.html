@@ -2,105 +2,238 @@
 
 {% block content %}
 
-<section class="relative min-h-screen px-6 py-16 overflow-hidden">
+<style>
+    @keyframes gridMove {
+        0% { background-position: 0 0; }
+        100% { background-position: 80px 80px; }
+    }
 
-    <div class="absolute inset-0 -z-10">
-        <div class="absolute top-32 left-10 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-32 right-10 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+    .mission-grid {
+        background-image:
+            linear-gradient(rgba(168,85,247,0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px);
+        background-size: 80px 80px;
+        animation: gridMove 18s linear infinite;
+    }
+
+    @keyframes terminalBlink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.25; }
+    }
+
+    .terminal-blink {
+        animation: terminalBlink 1.2s ease-in-out infinite;
+    }
+
+    @keyframes laptopLaunch {
+        0%, 100% { transform: translateY(0) rotate(-2deg); }
+        50% { transform: translateY(-18px) rotate(2deg); }
+    }
+
+    .laptop-launch {
+        animation: laptopLaunch 4s ease-in-out infinite;
+    }
+
+    @keyframes resultAppear {
+        from {
+            opacity: 0;
+            transform: translateY(35px) scale(0.96);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .result-appear {
+        animation: resultAppear 0.75s ease-out both;
+    }
+</style>
+
+<section class="relative min-h-screen px-6 py-14 overflow-hidden">
+
+    <div class="absolute inset-0 -z-10 mission-grid"></div>
+
+    <div class="absolute inset-0 -z-20">
+        <div class="absolute top-24 left-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-24 right-10 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,#1e1b4b_0%,#020617_58%)]"></div>
     </div>
 
     <div class="max-w-7xl mx-auto">
 
         <!-- HEADER -->
-        <div class="text-center mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center mb-16">
 
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-300 text-sm mb-6">
-                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                AI analysis completed
+            <div>
+                <div class="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-purple-500/20 bg-purple-500/10 text-purple-300 text-sm mb-7">
+                    <span class="w-2 h-2 bg-purple-400 rounded-full terminal-blink"></span>
+                    Laptop mission analysis completed
+                </div>
+
+                <h1 class="text-6xl md:text-7xl font-black tracking-tight mb-6">
+                    Your
+                    <span class="shine-text">
+                        workstation matches
+                    </span>
+                    are ready.
+                </h1>
+
+                <p class="text-slate-400 text-lg max-w-2xl leading-8">
+                    Aether analyzed CPU, RAM, SSD, display, budget and usage purpose to rank the best laptop options.
+                </p>
             </div>
 
-            <h1 class="text-6xl font-bold tracking-tight mb-5">
-                AI Recommended Laptops
-            </h1>
+            <!-- MISSION CONTROL VISUAL -->
+            <div class="hidden lg:flex justify-center">
 
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto leading-8">
-                Ranked results based on your budget, brand preference, usage type and device specifications.
+                <div class="relative w-[430px] h-[330px] flex items-center justify-center">
+
+                   <div class="relative w-[420px] h-[320px] flex items-center justify-center">
+
+    <!-- OUTER RINGS -->
+    <div class="absolute w-[320px] h-[320px] border border-cyan-500/20 rounded-full animate-spin"
+         style="animation-duration: 16s;">
+    </div>
+
+    <div class="absolute w-[250px] h-[250px] border border-purple-500/20 rounded-full animate-spin"
+         style="animation-duration: 10s; animation-direction: reverse;">
+    </div>
+
+    <!-- CENTER CORE -->
+    <div class="relative w-44 h-44 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-600/20 backdrop-blur-2xl border border-white/10 flex items-center justify-center shadow-[0_0_80px_rgba(59,130,246,0.25)]">
+
+        <div class="absolute inset-4 rounded-full border border-cyan-400/20"></div>
+
+        <div class="text-center z-10">
+
+            <div class="text-6xl mb-3 animate-pulse">
+                🧠
+            </div>
+
+            <p class="text-cyan-300 text-sm font-bold tracking-[0.25em]">
+                AETHER AI
             </p>
+
+        </div>
+
+    </div>
+
+    <!-- FLOATING NODES -->
+
+    <div class="absolute top-4 left-20 bg-slate-950/90 border border-cyan-500/20 rounded-2xl px-4 py-3 shadow-xl">
+        <p class="text-xs text-slate-500">Neural Scan</p>
+        <p class="text-cyan-400 font-black">ACTIVE</p>
+    </div>
+
+    <div class="absolute bottom-6 right-10 bg-slate-950/90 border border-purple-500/20 rounded-2xl px-4 py-3 shadow-xl">
+        <p class="text-xs text-slate-500">AI Ranking</p>
+        <p class="text-purple-400 font-black">RUNNING</p>
+    </div>
+
+    <div class="absolute bottom-16 left-0 bg-slate-950/90 border border-green-500/20 rounded-2xl px-4 py-3 shadow-xl">
+        <p class="text-xs text-slate-500">Optimization</p>
+        <p class="text-green-400 font-black">96%</p>
+    </div>
+
+</div>
+
+                </div>
+
+            </div>
 
         </div>
 
         {% if recommended_devices %}
 
-        <!-- TOP RECOMMENDATION SPOTLIGHT -->
+        <!-- TOP LAPTOP -->
         {% for item in recommended_devices %}
             {% if forloop.first %}
 
-            <div class="mb-16 relative">
+            <div class="mb-16 relative result-appear">
 
-                <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-[2rem] blur opacity-25"></div>
+                <div class="absolute -inset-1 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 rounded-[2.5rem] blur opacity-30"></div>
 
-                <div class="relative bg-white/5 border border-white/10 rounded-[2rem] p-8 md:p-10 backdrop-blur-2xl shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div class="relative bg-white/5 border border-white/10 rounded-[2.5rem] p-8 md:p-10 backdrop-blur-2xl shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-10 items-center overflow-hidden">
 
-                    <div class="flex justify-center">
-                        <div class="relative">
-                            <div class="absolute -inset-8 bg-blue-500/20 rounded-full blur-3xl"></div>
-                            <img
-                                src="{{ item.device.image_url }}"
-                                alt="{{ item.device.name }}"
-                                class="relative h-80 object-contain drop-shadow-2xl"
-                            >
-                        </div>
+                    <div class="absolute top-0 right-0 w-80 h-80 bg-purple-500/10 blur-3xl"></div>
+
+                    <div class="flex justify-center relative">
+
+                        <div class="absolute w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+
+                        <img
+                            src="{{ item.device.image_url }}"
+                            alt="{{ item.device.name }}"
+                            class="relative h-80 object-contain drop-shadow-2xl laptop-launch"
+                        >
+
                     </div>
 
-                    <div>
+                    <div class="relative z-10">
 
-                        <div class="flex items-center gap-3 mb-5">
-                            <span class="bg-green-500/10 text-green-400 px-4 py-2 rounded-full font-semibold">
-                                🏆 Top Match
+                        <div class="flex flex-wrap items-center gap-3 mb-6">
+
+                            <span class="bg-purple-500/10 text-purple-300 px-4 py-2 rounded-full font-bold border border-purple-500/20">
+                                🚀 Top Workstation
                             </span>
 
-                            <span class="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full font-semibold">
+                            <span class="bg-green-500/10 text-green-400 px-4 py-2 rounded-full font-bold border border-green-500/20">
                                 {{ item.score }}% Match
                             </span>
+
+                            <span class="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full font-bold border border-blue-500/20">
+                                {{ item.device.brand }}
+                            </span>
+
                         </div>
 
-                        <h2 class="text-5xl font-bold mb-5">
+                        <h2 class="text-5xl font-black mb-5 shine-text">
                             {{ item.device.name }}
                         </h2>
 
                         <p class="text-slate-400 text-lg mb-8 leading-8">
-                            This device is ranked highest by the AI engine based on performance, storage, price-to-value and usage fit.
+                            Ranked highest by Aether for workload balance, RAM, SSD capacity, price and usage fit.
                         </p>
 
                         <div class="grid grid-cols-2 gap-4 mb-8">
 
                             <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
-                                <p class="text-slate-500 text-sm">Brand</p>
-                                <p class="text-xl font-bold">{{ item.device.brand }}</p>
-                            </div>
-
-                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
                                 <p class="text-slate-500 text-sm">Price</p>
-                                <p class="text-xl font-bold">₹{{ item.device.price }}</p>
+                                <p class="text-xl font-black">₹{{ item.device.price }}</p>
                             </div>
 
                             {% if item.device.ram %}
                             <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
                                 <p class="text-slate-500 text-sm">RAM</p>
-                                <p class="text-xl font-bold">{{ item.device.ram }}</p>
+                                <p class="text-xl font-black">{{ item.device.ram }}</p>
                             </div>
                             {% endif %}
 
                             {% if item.device.storage %}
                             <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
-                                <p class="text-slate-500 text-sm">Storage</p>
-                                <p class="text-xl font-bold">{{ item.device.storage }}</p>
+                                <p class="text-slate-500 text-sm">SSD</p>
+                                <p class="text-xl font-black">{{ item.device.storage }}</p>
+                            </div>
+                            {% endif %}
+
+                            {% if item.device.processor %}
+                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
+                                <p class="text-slate-500 text-sm">Processor</p>
+                                <p class="text-lg font-black">{{ item.device.processor }}</p>
                             </div>
                             {% endif %}
 
                         </div>
 
                         <div class="flex flex-col sm:flex-row gap-4">
+
+                            <a
+                                href="/device/{{ item.device.id }}/"
+                                class="bg-slate-950/70 border border-white/10 hover:border-purple-500/40 text-white px-7 py-4 rounded-2xl font-semibold transition text-center hover:-translate-y-1"
+                            >
+                                View Details
+                            </a>
 
                             {% if item.device.id in favorite_device_ids %}
 
@@ -115,7 +248,7 @@
 
                                 <button
                                     data-device-id="{{ item.device.id }}"
-                                    class="favorite-btn bg-blue-600 hover:bg-blue-500 text-white px-7 py-4 rounded-2xl font-semibold transition hover:-translate-y-1"
+                                    class="favorite-btn bg-purple-600 hover:bg-purple-500 text-white px-7 py-4 rounded-2xl font-semibold transition hover:-translate-y-1"
                                 >
                                     Add To Favorites
                                 </button>
@@ -141,19 +274,19 @@
             {% endif %}
         {% endfor %}
 
-
-        <!-- OTHER RECOMMENDATIONS -->
+        <!-- RESULT GRID -->
         <div class="flex items-center justify-between mb-8">
 
-            <h2 class="text-3xl font-bold">
-                More Matches
-            </h2>
+            <div>
+                <p class="text-purple-400 font-semibold mb-2">MISSION RESULTS</p>
+                <h2 class="text-4xl font-black">More Laptop Matches</h2>
+            </div>
 
             <a
                 href="/laptop-favorites/"
-                class="text-blue-400 hover:text-blue-300 font-semibold"
+                class="text-purple-400 hover:text-purple-300 font-semibold"
             >
-                View Favorites →
+                View Laptop Favorites →
             </a>
 
         </div>
@@ -162,11 +295,13 @@
 
             {% for item in recommended_devices %}
 
-            <div class="group bg-white/5 border border-white/10 rounded-[2rem] p-6 backdrop-blur-xl hover:bg-white/10 transition hover:-translate-y-2 shadow-xl">
+            <div class="group relative bg-white/5 border border-white/10 rounded-[2rem] p-6 backdrop-blur-xl hover:bg-white/10 transition hover:-translate-y-3 shadow-xl overflow-hidden result-appear">
 
-                <div class="flex justify-between items-start mb-5">
+                <div class="absolute top-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
 
-                    <span class="bg-green-500/10 text-green-400 px-4 py-2 rounded-full font-semibold text-sm">
+                <div class="flex justify-between items-start mb-5 relative z-10">
+
+                    <span class="bg-green-500/10 text-green-400 px-4 py-2 rounded-full font-bold text-sm border border-green-500/20">
                         {{ item.score }}% Match
                     </span>
 
@@ -176,26 +311,30 @@
 
                 </div>
 
-                <div class="h-64 flex items-center justify-center mb-6">
+                <div class="h-64 flex items-center justify-center mb-6 relative">
+
+                    <div class="absolute w-48 h-48 bg-purple-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition"></div>
+
                     <img
                         src="{{ item.device.image_url }}"
                         alt="{{ item.device.name }}"
-                        class="max-h-60 object-contain group-hover:scale-105 transition duration-500"
+                        class="relative max-h-60 object-contain group-hover:scale-110 transition duration-500"
                     >
+
                 </div>
 
-                <h2 class="text-2xl font-bold mb-4">
+                <h2 class="text-2xl font-black mb-4 relative z-10">
                     {{ item.device.name }}
                 </h2>
 
                 <a
                     href="/device/{{ item.device.id }}/"
-                    class="inline-block text-blue-400 hover:text-blue-300 font-semibold mb-4"
+                    class="inline-block text-purple-400 hover:text-purple-300 font-semibold mb-4 relative z-10"
                 >
                     View Details →
                 </a>
 
-                <div class="space-y-3 text-slate-300 text-sm">
+                <div class="space-y-3 text-slate-300 text-sm relative z-10">
 
                     <div class="flex justify-between border-b border-white/5 pb-2">
                         <span class="text-slate-500">Price</span>
@@ -211,7 +350,7 @@
 
                     {% if item.device.storage %}
                     <div class="flex justify-between border-b border-white/5 pb-2">
-                        <span class="text-slate-500">Storage</span>
+                        <span class="text-slate-500">SSD</span>
                         <span>{{ item.device.storage }}</span>
                     </div>
                     {% endif %}
@@ -230,23 +369,9 @@
                     </div>
                     {% endif %}
 
-                    {% if item.device.camera %}
-                    <div class="pt-2">
-                        <p class="text-slate-500 mb-1">Camera</p>
-                        <p>{{ item.device.camera }}</p>
-                    </div>
-                    {% endif %}
-
-                    {% if item.device.battery %}
-                    <div class="pt-2">
-                        <p class="text-slate-500 mb-1">Battery</p>
-                        <p>{{ item.device.battery }}</p>
-                    </div>
-                    {% endif %}
-
                 </div>
 
-                <div class="mt-7 grid grid-cols-1 gap-3">
+                <div class="mt-7 grid grid-cols-1 gap-3 relative z-10">
 
                     {% if item.device.id in favorite_device_ids %}
 
@@ -261,7 +386,7 @@
 
                         <button
                             data-device-id="{{ item.device.id }}"
-                            class="favorite-btn w-full bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-2xl font-semibold transition"
+                            class="favorite-btn w-full bg-purple-600 hover:bg-purple-500 text-white py-3 rounded-2xl font-semibold transition"
                         >
                             Add To Favorites
                         </button>
@@ -286,24 +411,23 @@
 
         {% else %}
 
-        <!-- EMPTY STATE -->
         <div class="max-w-xl mx-auto text-center bg-white/5 border border-white/10 rounded-[2rem] p-12 backdrop-blur-xl">
 
             <div class="text-6xl mb-6">
-                🔍
+                💻
             </div>
 
             <h2 class="text-3xl font-bold mb-4">
-                No devices found
+                No laptops found
             </h2>
 
             <p class="text-slate-400 mb-8">
-                Try changing your brand or increasing your budget to discover more devices.
+                Try changing your laptop brand or increasing your budget.
             </p>
 
             <a
-                href="/mobile-explorer/"
-                class="inline-block bg-blue-600 hover:bg-blue-500 text-white px-7 py-4 rounded-2xl font-semibold transition"
+                href="/laptop-explorer/"
+                class="inline-block bg-purple-600 hover:bg-purple-500 text-white px-7 py-4 rounded-2xl font-semibold transition"
             >
                 Search Again
             </a>
@@ -338,7 +462,7 @@
             .then(data => {
                 if (data.status === "success") {
                     this.innerText = "Added";
-                    this.classList.remove("bg-blue-600", "hover:bg-blue-500");
+                    this.classList.remove("bg-purple-600", "hover:bg-purple-500");
                     this.classList.add("bg-green-600", "cursor-not-allowed");
                     this.disabled = true;
                 } else {

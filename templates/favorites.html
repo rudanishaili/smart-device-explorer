@@ -2,38 +2,219 @@
 
 {% block content %}
 
-<section class="relative min-h-screen px-6 py-16 overflow-hidden">
+<style>
 
-    <div class="absolute inset-0 -z-10">
-        <div class="absolute top-32 left-10 w-80 h-80 bg-red-600/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-32 right-10 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
+    @keyframes floatHeart {
+
+        0%, 100% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-18px);
+        }
+
+    }
+
+    .float-heart {
+        animation: floatHeart 4s ease-in-out infinite;
+    }
+
+    @keyframes vaultPulse {
+
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 0 40px rgba(236, 72, 153, 0.15);
+        }
+
+        50% {
+            transform: scale(1.04);
+            box-shadow: 0 0 80px rgba(236, 72, 153, 0.35);
+        }
+
+    }
+
+    .vault-pulse {
+        animation: vaultPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes cardReveal {
+
+        from {
+            opacity: 0;
+            transform: translateY(40px) scale(0.96);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0px) scale(1);
+        }
+
+    }
+
+    .card-reveal {
+        animation: cardReveal 0.8s ease forwards;
+    }
+
+    @keyframes glowMove {
+
+        0% {
+            transform: translateX(-20px);
+        }
+
+        50% {
+            transform: translateX(20px);
+        }
+
+        100% {
+            transform: translateX(-20px);
+        }
+
+    }
+
+    .glow-move {
+        animation: glowMove 5s ease-in-out infinite;
+    }
+
+    .favorite-card:hover {
+        transform: translateY(-14px) scale(1.02);
+    }
+
+</style>
+
+<section class="relative min-h-screen px-6 py-12 overflow-hidden">
+
+    <!-- BACKGROUND -->
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+
+        <div class="absolute top-20 left-10 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"></div>
+
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,#111827_0%,#020617_55%)]"></div>
+
     </div>
 
     <div class="max-w-7xl mx-auto">
 
-        <!-- HEADER -->
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-14">
+        <!-- HERO -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
 
+            <!-- LEFT -->
             <div>
-                <p class="text-blue-400 font-semibold mb-2">
-                    SAVED DEVICES
-                </p>
 
-                <h1 class="text-5xl font-bold">
-                    Your Favorite Devices
+                <div class="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-pink-500/20 bg-pink-500/10 text-pink-300 text-sm mb-8">
+
+                    <span class="w-2 h-2 rounded-full bg-pink-400 animate-ping"></span>
+
+                    Your AI Collection Vault
+
+                </div>
+
+                <h1 class="text-6xl md:text-7xl font-black leading-tight mb-8">
+
+                    Devices you
+                    <span class="shine-text">
+                        loved
+                    </span>
+                    most.
+
                 </h1>
 
-                <p class="text-slate-400 mt-4">
-                    Select 2 to 3 phones and compare them using AI scoring.
+                <p class="text-slate-400 text-lg leading-9 max-w-2xl">
+
+                    Your favorite devices are stored inside your intelligent AI vault.
+                    Compare them, analyze them and discover your ultimate device.
+
                 </p>
+
             </div>
 
-            <a
-                href="/recommendations/"
-                class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-2xl font-semibold transition hover:-translate-y-1"
-            >
-                ← Recommended Devices
-            </a>
+            <!-- RIGHT VISUAL -->
+            <div class="hidden lg:flex justify-center">
+
+                <div class="relative w-[420px] h-[320px] flex items-center justify-center">
+
+                    <!-- FLOATING HEARTS -->
+                    <!-- FLOATING HEARTS -->
+
+                    <div class="absolute top-8 left-6 text-5xl float-heart z-20">
+                        ❤️
+                    </div>
+
+                    <div class="absolute top-20 right-8 text-4xl float-heart z-20"
+                        style="animation-delay: 1s;">
+                        💖
+                    </div>
+
+                    <div class="absolute bottom-10 left-10 text-4xl float-heart z-20"
+                        style="animation-delay: 2s;">
+                        💘
+                    </div>
+
+                    <div class="absolute bottom-6 right-14 text-5xl float-heart z-20"
+                        style="animation-delay: 1.5s;">
+                        💕
+                    </div>
+
+                    <div class="absolute top-1/2 -left-2 text-3xl float-heart z-20"
+                        style="animation-delay: 2.8s;">
+                        💗
+                    </div>
+
+                    <div class="absolute top-1/2 -right-2 text-3xl float-heart z-20"
+                        style="animation-delay: 3.3s;">
+                        💞
+                    </div>
+
+                    <div class="absolute top-14 left-1/2 text-2xl float-heart z-20"
+                        style="animation-delay: 1.8s;">
+                        ✨
+                    </div>
+
+                    <div class="absolute bottom-16 left-1/2 text-2xl float-heart z-20"
+                        style="animation-delay: 2.4s;">
+                        💓
+                    </div>
+
+                    <div class="absolute top-32 left-20 text-3xl float-heart z-20"
+                        style="animation-delay: 0.7s;">
+                        💝
+                    </div>
+
+                    <div class="absolute bottom-24 right-24 text-2xl float-heart z-20"
+                        style="animation-delay: 2.1s;">
+                        🌸
+                    </div>
+
+                    <!-- VAULT -->
+                    <div class="relative w-[320px] h-[240px] rounded-[3rem] bg-white/5 border border-white/10 backdrop-blur-2xl shadow-2xl flex flex-col items-center justify-center vault-pulse overflow-hidden">
+
+                        <div class="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-blue-500/10"></div>
+
+                        <div class="absolute w-52 h-52 bg-pink-500/10 rounded-full blur-3xl glow-move"></div>
+
+                        <div class="relative z-10 text-center">
+
+                            <div class="w-28 h-28 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-6xl mx-auto mb-6 shadow-2xl shadow-pink-500/30">
+                                💎
+                            </div>
+
+                            <h2 class="text-4xl font-black mb-3">
+                                Favorite Vault
+                            </h2>
+
+                            <p class="text-slate-400">
+                                AI protected saved devices
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -41,59 +222,89 @@
 
             {% if favorite_items %}
 
+            <!-- TITLE -->
+            <div class="flex items-center justify-between mb-10">
+
+                <div>
+
+                    <p class="text-pink-400 font-semibold mb-2">
+                        SAVED COLLECTION
+                    </p>
+
+                    <h2 class="text-4xl font-black">
+                        Favorite Devices
+                    </h2>
+
+                </div>
+
+                <a
+                    href="/recommendations/"
+                    class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-2xl font-semibold transition hover:-translate-y-1 shadow-xl shadow-blue-500/20"
+                >
+                    ← Back To Recommendations
+                </a>
+
+            </div>
+
+            <!-- CARDS -->
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
 
                 {% for item in favorite_items %}
 
                 <div
                     id="favorite-card-{{ item.device.id }}"
-                    class="group relative bg-white/5 border border-white/10 rounded-[2rem] p-6 backdrop-blur-xl hover:bg-white/10 transition hover:-translate-y-2 shadow-xl"
+                    class="favorite-card relative bg-white/5 border border-white/10 rounded-[2rem] p-6 backdrop-blur-2xl shadow-2xl transition duration-500 overflow-hidden card-reveal"
                 >
 
+                    <!-- GLOW -->
+                    <div class="absolute top-0 right-0 w-52 h-52 bg-pink-500/10 rounded-full blur-3xl"></div>
+
                     <!-- SELECT -->
-                    <label class="flex items-center gap-3 mb-5 cursor-pointer">
+                    <label class="flex items-center gap-3 mb-5 cursor-pointer relative z-10">
 
                         <input
                             type="checkbox"
                             name="devices"
                             value="{{ item.device.id }}"
-                            class="w-5 h-5 accent-blue-600"
+                            class="w-5 h-5 accent-pink-500"
                         >
 
                         <span class="text-slate-300 font-semibold">
-                            Select for comparison
+                            Select for AI compare
                         </span>
 
                     </label>
 
                     <!-- IMAGE -->
-                    <div class="h-64 flex items-center justify-center mb-6 bg-slate-950/50 rounded-3xl border border-white/5">
+                    <div class="h-64 flex items-center justify-center mb-6 bg-slate-950/50 rounded-3xl border border-white/5 relative overflow-hidden">
+
+                        <div class="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-blue-500/5"></div>
 
                         <img
                             src="{{ item.device.image_url }}"
-                            class="max-h-56 object-contain group-hover:scale-105 transition duration-500"
+                            class="relative z-10 max-h-56 object-contain hover:scale-110 transition duration-500"
                         >
 
                     </div>
 
                     <!-- TITLE -->
-                    <h2 class="text-2xl font-bold mb-2">
+                    <h2 class="text-2xl font-black mb-2 relative z-10">
                         {{ item.device.name }}
                     </h2>
 
                     <a
                         href="/device/{{ item.device.id }}/"
-                        class="inline-block text-blue-400 hover:text-blue-300 font-semibold mb-4"
+                        class="inline-block text-blue-400 hover:text-blue-300 font-semibold mb-4 relative z-10"
                     >
                         View Details →
                     </a>
 
-                    <p class="text-slate-500 mb-6">
+                    <p class="text-pink-400 mb-6 font-semibold relative z-10">
                         {{ item.device.brand }}
                     </p>
 
                     <!-- SPECS -->
-                    <div class="space-y-3 text-sm">
+                    <div class="space-y-3 text-sm relative z-10">
 
                         <div class="flex justify-between border-b border-white/5 pb-2">
                             <span class="text-slate-500">Price</span>
@@ -121,44 +332,23 @@
                         </div>
                         {% endif %}
 
-                        {% if item.device.display %}
-                        <div class="pt-2">
-                            <p class="text-slate-500 mb-1">Display</p>
-                            <p class="text-slate-300">{{ item.device.display }}</p>
-                        </div>
-                        {% endif %}
-
-                        {% if item.device.camera %}
-                        <div class="pt-2">
-                            <p class="text-slate-500 mb-1">Camera</p>
-                            <p class="text-slate-300">{{ item.device.camera }}</p>
-                        </div>
-                        {% endif %}
-
-                        {% if item.device.battery %}
-                        <div class="pt-2">
-                            <p class="text-slate-500 mb-1">Battery</p>
-                            <p class="text-slate-300">{{ item.device.battery }}</p>
-                        </div>
-                        {% endif %}
-
                     </div>
 
                     <!-- ACTIONS -->
-                    <div class="mt-7 grid grid-cols-1 gap-3">
+                    <div class="mt-7 grid grid-cols-1 gap-3 relative z-10">
 
                         <button
                             type="button"
                             data-device-id="{{ item.device.id }}"
                             class="remove-favorite-btn w-full bg-red-500/10 text-red-400 border border-red-500/20 py-3 rounded-2xl font-semibold hover:bg-red-500 hover:text-white transition"
                         >
-                            Remove
+                            Remove Device
                         </button>
 
                         <a
                             href="{{ item.device.source_url }}"
                             target="_blank"
-                            class="w-full text-center bg-orange-500 hover:bg-orange-400 text-white py-3 rounded-2xl font-semibold transition"
+                            class="w-full text-center bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 text-white py-3 rounded-2xl font-semibold transition"
                         >
                             Buy Now
                         </a>
@@ -172,40 +362,53 @@
             </div>
 
             <!-- COMPARE BUTTON -->
-            <div class="sticky bottom-6 z-30 mt-12 flex justify-center">
+            <div class="sticky bottom-6 z-40 mt-14 flex justify-center">
 
                 <button
                     type="submit"
-                    class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-2xl font-bold shadow-2xl shadow-blue-500/25 hover:-translate-y-1 transition"
+                    class="relative overflow-hidden bg-gradient-to-r from-pink-500 via-purple-500 to-blue-600 text-white px-12 py-5 rounded-3xl font-black text-lg shadow-2xl shadow-pink-500/30 hover:-translate-y-1 transition duration-300"
                 >
-                    Compare Selected Devices
+
+                    <span class="relative z-10">
+                        ⚡ Launch AI Comparison
+                    </span>
+
+                    <div class="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition"></div>
+
                 </button>
 
             </div>
 
             {% else %}
 
-            <!-- EMPTY STATE -->
-            <div class="max-w-xl mx-auto text-center bg-white/5 border border-white/10 rounded-[2rem] p-12 backdrop-blur-xl">
+            <!-- EMPTY -->
+            <div class="max-w-2xl mx-auto text-center bg-white/5 border border-white/10 rounded-[3rem] p-16 backdrop-blur-2xl shadow-2xl relative overflow-hidden">
 
-                <div class="text-6xl mb-6">
-                    ❤️
+                <div class="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-blue-500/5"></div>
+
+                <div class="relative z-10">
+
+                    <div class="text-8xl mb-8 float-heart">
+                        💔
+                    </div>
+
+                    <h2 class="text-5xl font-black mb-5">
+                        No favorites yet
+                    </h2>
+
+                    <p class="text-slate-400 text-lg mb-10 leading-8">
+                        Your AI vault is empty right now.
+                        Save devices from recommendations to unlock comparisons.
+                    </p>
+
+                    <a
+                        href="/mobile-explorer/"
+                        class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 text-white px-10 py-5 rounded-3xl font-bold text-lg transition shadow-2xl shadow-blue-500/20"
+                    >
+                        Explore Mobiles
+                    </a>
+
                 </div>
-
-                <h2 class="text-3xl font-bold mb-4">
-                    No favorites yet
-                </h2>
-
-                <p class="text-slate-400 mb-8">
-                    Add phones from recommendations to compare them later.
-                </p>
-
-                <a
-                    href="/mobile-explorer/"
-                    class="inline-block bg-blue-600 hover:bg-blue-500 text-white px-7 py-4 rounded-2xl font-semibold transition"
-                >
-                    Explore Mobiles
-                </a>
 
             </div>
 
@@ -218,59 +421,97 @@
 </section>
 
 <script>
+
     const removeButtons = document.querySelectorAll(".remove-favorite-btn");
 
     removeButtons.forEach(button => {
+
         button.addEventListener("click", function () {
 
             const deviceId = this.dataset.deviceId;
 
             fetch(`/remove-from-favorites/${deviceId}/`, {
+
                 method: "GET",
+
                 headers: {
                     "X-Requested-With": "XMLHttpRequest"
                 }
+
             })
+
             .then(response => response.json())
+
             .then(data => {
+
                 if (data.status === "success") {
+
                     const card = document.getElementById(`favorite-card-${deviceId}`);
+
                     if (card) {
-                        card.remove();
+
+                        card.style.transform = "scale(0)";
+                        card.style.opacity = "0";
+
+                        setTimeout(() => {
+                            card.remove();
+                        }, 300);
+
                     }
-                } else {
-                    alert(data.message);
+
                 }
+
+                else {
+
+                    alert(data.message);
+
+                }
+
             })
+
             .catch(error => {
+
                 console.log(error);
                 alert("Something went wrong");
+
             });
 
         });
+
     });
+
 </script>
 
 <script>
+
     const compareForm = document.getElementById("compare-form");
 
-    compareForm.addEventListener("submit", function(event) {
+    if (compareForm) {
 
-        const checkedDevices = document.querySelectorAll(
-            'input[name="devices"]:checked'
-        );
+        compareForm.addEventListener("submit", function(event) {
 
-        if (checkedDevices.length < 2) {
-            event.preventDefault();
-            alert("Please select at least 2 devices for comparison.");
-        }
+            const checkedDevices = document.querySelectorAll(
+                'input[name="devices"]:checked'
+            );
 
-        else if (checkedDevices.length > 3) {
-            event.preventDefault();
-            alert("You can compare maximum 3 devices only.");
-        }
+            if (checkedDevices.length < 2) {
 
-    });
+                event.preventDefault();
+                alert("Please select at least 2 devices for comparison.");
+
+            }
+
+            else if (checkedDevices.length > 3) {
+
+                event.preventDefault();
+                alert("You can compare maximum 3 devices only.");
+
+            }
+
+        });
+
+    }
+
 </script>
 
 {% endblock %}

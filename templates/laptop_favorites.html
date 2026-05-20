@@ -2,38 +2,159 @@
 
 {% block content %}
 
-<section class="relative min-h-screen px-6 py-16 overflow-hidden">
+<style>
+    @keyframes laptopFloat {
+        0%, 100% {
+            transform: translateY(0) rotate(-2deg);
+        }
+        50% {
+            transform: translateY(-16px) rotate(2deg);
+        }
+    }
 
-    <div class="absolute inset-0 -z-10">
-        <div class="absolute top-32 left-10 w-80 h-80 bg-red-600/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-32 right-10 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
+    .laptop-float {
+        animation: laptopFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes dataStream {
+        0% {
+            transform: translateY(-40px);
+            opacity: 0;
+        }
+        30% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(140px);
+            opacity: 0;
+        }
+    }
+
+    .data-stream {
+        animation: dataStream 3s linear infinite;
+    }
+
+    @keyframes arsenalReveal {
+        from {
+            opacity: 0;
+            transform: translateY(35px) scale(0.96);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .arsenal-reveal {
+        animation: arsenalReveal 0.75s ease-out both;
+    }
+
+    .laptop-card:hover {
+        transform: translateY(-14px) scale(1.02);
+    }
+
+    @keyframes laptopRotate {
+
+    0% {
+        transform: rotate(-8deg) translateY(0px);
+    }
+
+    25% {
+        transform: rotate(6deg) translateY(-12px);
+    }
+
+    50% {
+        transform: rotate(-4deg) translateY(10px);
+    }
+
+    75% {
+        transform: rotate(7deg) translateY(-8px);
+    }
+
+    100% {
+        transform: rotate(-8deg) translateY(0px);
+    }
+
+}
+
+.laptop-rotate {
+    animation: laptopRotate 6s ease-in-out infinite;
+}
+
+</style>
+
+<section class="relative min-h-screen px-6 py-12 overflow-hidden">
+
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+        <div class="absolute top-24 left-10 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-24 right-10 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,#1e1b4b_0%,#020617_55%)]"></div>
     </div>
 
     <div class="max-w-7xl mx-auto">
 
-        <!-- HEADER -->
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-14">
+        <!-- HERO -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
 
             <div>
-                <p class="text-blue-400 font-semibold mb-2">
-                    SAVED DEVICES
-                </p>
 
-                <h1 class="text-5xl font-bold">
-                    Your Favorite Laptops
+                <div class="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-purple-500/20 bg-purple-500/10 text-purple-300 text-sm mb-8">
+                    <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+                    Laptop Workstation Vault
+                </div>
+
+                <h1 class="text-6xl md:text-7xl font-black leading-tight mb-8">
+                    Your saved
+                    <span class="shine-text">
+                        laptop arsenal
+                    </span>
                 </h1>
 
-                <p class="text-slate-400 mt-4">
-                    Select 2 to 3 phones and compare them using AI scoring.
+                <p class="text-slate-400 text-lg leading-9 max-w-2xl">
+                    Keep your shortlisted laptops ready for AI comparison.
+                    Select 2 to 3 machines and let Aether choose the strongest workstation.
                 </p>
+
             </div>
 
-            <a
-                href="/laptop-recommendations/"
-                class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-2xl font-semibold transition hover:-translate-y-1"
-            >
-                ← Recommended Devices
-            </a>
+            <!-- LAPTOP VAULT VISUAL -->
+            <div class="hidden lg:flex justify-center">
+
+                <div class="relative w-[440px] h-[340px] flex items-center justify-center">
+
+                    <div class="absolute w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
+
+                    <div class="absolute top-8 left-10 text-purple-400 text-bold data-stream z-20">
+                        CPU
+                    </div>
+
+                    <div class="absolute top-4 right-16 text-blue-400 text-bold data-stream z-20" style="animation-delay: 0.8s;">
+                        SSD
+                    </div>
+
+                    <div class="absolute bottom-10 left-20 text-green-400 text-bold data-stream z-20" style="animation-delay: 1.6s;">
+                        RAM
+                    </div>
+
+                    <div class="absolute bottom-16 right-12 text-cyan-400 text-bold data-stream z-20" style="animation-delay: 2.2s;">
+                        GPU
+                    </div>
+
+                    <div class="relative w-[520px] rounded-[2.8rem] bg-white/5 border border-white/10 backdrop-blur-2xl shadow-2xl p-8 overflow-hidden laptop-float">
+
+                        <div class="relative z-0 flex items-center justify-center">
+
+                        <img
+                            src="/media/laptops/lenovo_legion.png"
+                            class="w-[320px] laptop-rotate drop-shadow-[0_0_60px_rgba(168,85,247,0.45)] select-none pointer-events-none"
+                            draggable="true"
+                        />
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -41,59 +162,86 @@
 
             {% if favorite_items %}
 
+            <!-- TITLE -->
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-10">
+
+                <div>
+                    <p class="text-purple-400 font-semibold mb-2">
+                        SAVED LAPTOPS
+                    </p>
+
+                    <h2 class="text-4xl font-black">
+                        Favorite Laptops
+                    </h2>
+                </div>
+
+                <a
+                    href="/laptop-explorer/"
+                    class="bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-2xl font-semibold transition hover:-translate-y-1 shadow-xl shadow-purple-500/20"
+                >
+                    ← Back To Laptop Explorer
+                </a>
+
+            </div>
+
+            <!-- CARDS -->
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
 
                 {% for item in favorite_items %}
 
                 <div
                     id="favorite-card-{{ item.device.id }}"
-                    class="group relative bg-white/5 border border-white/10 rounded-[2rem] p-6 backdrop-blur-xl hover:bg-white/10 transition hover:-translate-y-2 shadow-xl"
+                    class="laptop-card relative bg-white/5 border border-white/10 rounded-[2rem] p-6 backdrop-blur-2xl shadow-2xl transition duration-500 overflow-hidden arsenal-reveal"
                 >
 
+                    <div class="absolute top-0 right-0 w-52 h-52 bg-purple-500/10 rounded-full blur-3xl"></div>
+
                     <!-- SELECT -->
-                    <label class="flex items-center gap-3 mb-5 cursor-pointer">
+                    <label class="flex items-center gap-3 mb-5 cursor-pointer relative z-10">
 
                         <input
                             type="checkbox"
                             name="devices"
                             value="{{ item.device.id }}"
-                            class="w-5 h-5 accent-blue-600"
+                            class="w-5 h-5 accent-purple-500"
                         >
 
                         <span class="text-slate-300 font-semibold">
-                            Select for comparison
+                            Select for workstation compare
                         </span>
 
                     </label>
 
                     <!-- IMAGE -->
-                    <div class="h-64 flex items-center justify-center mb-6 bg-slate-950/50 rounded-3xl border border-white/5">
+                    <div class="h-64 flex items-center justify-center mb-6 bg-slate-950/50 rounded-3xl border border-white/5 relative overflow-hidden">
+
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5"></div>
 
                         <img
                             src="{{ item.device.image_url }}"
-                            class="max-h-56 object-contain group-hover:scale-105 transition duration-500"
+                            class="relative z-10 max-h-56 object-contain hover:scale-110 transition duration-500"
                         >
 
                     </div>
 
                     <!-- TITLE -->
-                    <h2 class="text-2xl font-bold mb-2">
+                    <h2 class="text-2xl font-black mb-2 relative z-10">
                         {{ item.device.name }}
                     </h2>
 
                     <a
                         href="/device/{{ item.device.id }}/"
-                        class="inline-block text-blue-400 hover:text-blue-300 font-semibold mb-4"
+                        class="inline-block text-purple-400 hover:text-purple-300 font-semibold mb-4 relative z-10"
                     >
                         View Details →
                     </a>
 
-                    <p class="text-slate-500 mb-6">
+                    <p class="text-blue-400 mb-6 font-semibold relative z-10">
                         {{ item.device.brand }}
                     </p>
 
                     <!-- SPECS -->
-                    <div class="space-y-3 text-sm">
+                    <div class="space-y-3 text-sm relative z-10">
 
                         <div class="flex justify-between border-b border-white/5 pb-2">
                             <span class="text-slate-500">Price</span>
@@ -121,44 +269,23 @@
                         </div>
                         {% endif %}
 
-                        {% if item.device.display %}
-                        <div class="pt-2">
-                            <p class="text-slate-500 mb-1">Display</p>
-                            <p class="text-slate-300">{{ item.device.display }}</p>
-                        </div>
-                        {% endif %}
-
-                        {% if item.device.camera %}
-                        <div class="pt-2">
-                            <p class="text-slate-500 mb-1">Camera</p>
-                            <p class="text-slate-300">{{ item.device.camera }}</p>
-                        </div>
-                        {% endif %}
-
-                        {% if item.device.battery %}
-                        <div class="pt-2">
-                            <p class="text-slate-500 mb-1">Battery</p>
-                            <p class="text-slate-300">{{ item.device.battery }}</p>
-                        </div>
-                        {% endif %}
-
                     </div>
 
                     <!-- ACTIONS -->
-                    <div class="mt-7 grid grid-cols-1 gap-3">
+                    <div class="mt-7 grid grid-cols-1 gap-3 relative z-10">
 
                         <button
                             type="button"
                             data-device-id="{{ item.device.id }}"
                             class="remove-favorite-btn w-full bg-red-500/10 text-red-400 border border-red-500/20 py-3 rounded-2xl font-semibold hover:bg-red-500 hover:text-white transition"
                         >
-                            Remove
+                            Remove Laptop
                         </button>
 
                         <a
                             href="{{ item.device.source_url }}"
                             target="_blank"
-                            class="w-full text-center bg-orange-500 hover:bg-orange-400 text-white py-3 rounded-2xl font-semibold transition"
+                            class="w-full text-center bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 text-white py-3 rounded-2xl font-semibold transition"
                         >
                             Buy Now
                         </a>
@@ -172,40 +299,47 @@
             </div>
 
             <!-- COMPARE BUTTON -->
-            <div class="sticky bottom-6 z-30 mt-12 flex justify-center">
+            <div class="sticky bottom-6 z-40 mt-14 flex justify-center">
 
                 <button
                     type="submit"
-                    class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-2xl font-bold shadow-2xl shadow-blue-500/25 hover:-translate-y-1 transition"
+                    class="relative overflow-hidden bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 text-white px-12 py-5 rounded-3xl font-black text-lg shadow-2xl shadow-purple-500/30 hover:-translate-y-1 transition duration-300"
                 >
-                    Compare Selected Devices
+                    ⚡ Launch Laptop Comparison
                 </button>
 
             </div>
 
             {% else %}
 
-            <!-- EMPTY STATE -->
-            <div class="max-w-xl mx-auto text-center bg-white/5 border border-white/10 rounded-[2rem] p-12 backdrop-blur-xl">
+            <!-- EMPTY -->
+            <div class="max-w-2xl mx-auto text-center bg-white/5 border border-white/10 rounded-[3rem] p-16 backdrop-blur-2xl shadow-2xl relative overflow-hidden">
 
-                <div class="text-6xl mb-6">
-                    ❤️
+                <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5"></div>
+
+                <div class="relative z-10">
+
+                    <div class="text-8xl mb-8 laptop-float">
+                        💻
+                    </div>
+
+                    <h2 class="text-5xl font-black mb-5">
+                        No laptops saved yet
+                    </h2>
+
+                    <p class="text-slate-400 text-lg mb-10 leading-8">
+                        Your workstation vault is empty.
+                        Add laptops from recommendations to compare them later.
+                    </p>
+
+                    <a
+                        href="/laptop-explorer/"
+                        class="inline-block bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 text-white px-10 py-5 rounded-3xl font-bold text-lg transition shadow-2xl shadow-purple-500/20"
+                    >
+                        Explore Laptops
+                    </a>
+
                 </div>
-
-                <h2 class="text-3xl font-bold mb-4">
-                    No favorites yet
-                </h2>
-
-                <p class="text-slate-400 mb-8">
-                    Add phones from recommendations to compare them later.
-                </p>
-
-                <a
-                    href="/mobile-explorer/"
-                    class="inline-block bg-blue-600 hover:bg-blue-500 text-white px-7 py-4 rounded-2xl font-semibold transition"
-                >
-                    Explore Mobiles
-                </a>
 
             </div>
 
@@ -235,8 +369,14 @@
             .then(data => {
                 if (data.status === "success") {
                     const card = document.getElementById(`favorite-card-${deviceId}`);
+
                     if (card) {
-                        card.remove();
+                        card.style.transform = "scale(0)";
+                        card.style.opacity = "0";
+
+                        setTimeout(() => {
+                            card.remove();
+                        }, 300);
                     }
                 } else {
                     alert(data.message);
@@ -254,23 +394,25 @@
 <script>
     const compareForm = document.getElementById("compare-form");
 
-    compareForm.addEventListener("submit", function(event) {
+    if (compareForm) {
+        compareForm.addEventListener("submit", function(event) {
 
-        const checkedDevices = document.querySelectorAll(
-            'input[name="devices"]:checked'
-        );
+            const checkedDevices = document.querySelectorAll(
+                'input[name="devices"]:checked'
+            );
 
-        if (checkedDevices.length < 2) {
-            event.preventDefault();
-            alert("Please select at least 2 devices for comparison.");
-        }
+            if (checkedDevices.length < 2) {
+                event.preventDefault();
+                alert("Please select at least 2 laptops for comparison.");
+            }
 
-        else if (checkedDevices.length > 3) {
-            event.preventDefault();
-            alert("You can compare maximum 3 devices only.");
-        }
+            else if (checkedDevices.length > 3) {
+                event.preventDefault();
+                alert("You can compare maximum 3 laptops only.");
+            }
 
-    });
+        });
+    }
 </script>
 
 {% endblock %}

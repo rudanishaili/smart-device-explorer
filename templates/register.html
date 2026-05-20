@@ -6,111 +6,106 @@
 
     <!-- BACKGROUND EFFECTS -->
     <div class="absolute inset-0 -z-10">
-        <div class="absolute top-20 left-20 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-20 right-20 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute top-20 left-20 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl float-slow"></div>
+        <div class="absolute bottom-20 right-20 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl float-slow" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-[440px] h-[440px] border border-white/5 rounded-full rotate-slow"></div>
     </div>
 
     <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-<!-- LEFT VISUAL PANEL -->
-<div class="hidden lg:flex items-center justify-center relative h-full">
 
-    <!-- GLOW -->
-    <div class="absolute w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-3xl"></div>
+        <!-- LEFT VISUAL PANEL -->
+        <div class="hidden lg:flex items-center justify-center relative h-full soft-reveal">
 
-    <!-- MAIN VISUAL -->
-    <div class="relative">
+            <div class="absolute w-[520px] h-[520px] bg-blue-600/20 rounded-full blur-3xl float-slow"></div>
 
-        <!-- ORBIT BACKGROUND -->
-        <div class="relative w-[520px] h-[520px] flex items-center justify-center">
+            <div class="relative w-[520px] h-[520px] flex items-center justify-center">
 
-            <!-- OUTER ORBIT -->
-            <div class="absolute w-[460px] h-[460px] border border-white/10 rounded-full"></div>
-
-            <!-- MIDDLE ORBIT -->
-            <div class="absolute w-[340px] h-[340px] border border-blue-500/20 rounded-full"></div>
-
-            <!-- INNER ORBIT -->
-            <div class="absolute w-[220px] h-[220px] border border-purple-500/20 rounded-full"></div>
-
-            <!-- CENTER PROFILE -->
-            <div class="relative z-20 w-44 h-44 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-[3px] shadow-2xl shadow-blue-500/30">
-
-                <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center text-7xl">
-                    👤
+                <div class="absolute w-[460px] h-[460px] border border-white/10 rounded-full orbit-spin">
+                    <div class="absolute top-0 left-1/2 w-3 h-3 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50"></div>
                 </div>
 
-            </div>
+                <div class="absolute w-[340px] h-[340px] border border-blue-500/20 rounded-full orbit-spin-reverse">
+                    <div class="absolute top-0 left-1/2 w-3 h-3 bg-purple-400 rounded-full shadow-lg shadow-purple-400/50"></div>
+                </div>
 
-            <!-- FLOATING CHIPS -->
+                <div class="absolute w-[220px] h-[220px] border border-purple-500/20 rounded-full orbit-spin">
+                    <div class="absolute top-0 left-1/2 w-3 h-3 bg-green-400 rounded-full shadow-lg shadow-green-400/50"></div>
+                </div>
+                <!-- CENTER PROFILE -->
+                <div class="relative z-20 w-44 h-44 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-[3px] shadow-2xl shadow-blue-500/30 pulse-glow">
 
-            <div class="absolute top-10 left-24 bg-slate-900 border border-white/10 px-5 py-3 rounded-2xl shadow-xl">
-                <p class="text-sm text-slate-400">Favorite Brand</p>
-                <h3 class="font-bold text-lg">Samsung</h3>
-            </div>
+                    <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center text-7xl">
+                        👤
+                    </div>
 
-            <div class="absolute top-28 right-10 bg-slate-900 border border-white/10 px-5 py-3 rounded-2xl shadow-xl">
-                <p class="text-sm text-slate-400">Usage</p>
-                <h3 class="font-bold text-lg">Gaming</h3>
-            </div>
+                </div>
 
-            <div class="absolute bottom-28 left-8 bg-slate-900 border border-white/10 px-5 py-3 rounded-2xl shadow-xl">
-                <p class="text-sm text-slate-400">Budget</p>
-                <h3 class="font-bold text-lg">₹30K</h3>
-            </div>
+                <!-- FLOATING CHIPS -->
+                <div class="absolute top-10 left-24 bg-slate-900 border border-white/10 px-5 py-3 rounded-2xl shadow-xl float-slow">
+                    <p class="text-sm text-slate-400">Favorite Brand</p>
+                    <h3 class="font-bold text-lg">Samsung</h3>
+                </div>
 
-            <div class="absolute bottom-12 right-24 bg-slate-900 border border-white/10 px-5 py-3 rounded-2xl shadow-xl">
-                <p class="text-sm text-slate-400">AI Match</p>
-                <h3 class="font-bold text-lg text-blue-400">96%</h3>
-            </div>
+                <div class="absolute top-28 right-10 bg-slate-900 border border-white/10 px-5 py-3 rounded-2xl shadow-xl float-slow" style="animation-delay: 1s;">
+                    <p class="text-sm text-slate-400">Usage</p>
+                    <h3 class="font-bold text-lg">Gaming</h3>
+                </div>
 
-            <!-- FLOATING ICONS -->
+                <div class="absolute bottom-28 left-8 bg-slate-900 border border-white/10 px-5 py-3 rounded-2xl shadow-xl float-slow" style="animation-delay: 2s;">
+                    <p class="text-sm text-slate-400">Budget</p>
+                    <h3 class="font-bold text-lg">₹30K</h3>
+                </div>
 
-            <div class="absolute top-1/2 left-0 -translate-y-1/2 w-16 h-16 rounded-3xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl backdrop-blur-xl">
-                📱
-            </div>
+                <div class="absolute bottom-12 right-24 bg-slate-900 border border-white/10 px-5 py-3 rounded-2xl shadow-xl float-slow" style="animation-delay: 3s;">
+                    <p class="text-sm text-slate-400">AI Match</p>
+                    <h3 class="font-bold text-lg text-blue-400">96%</h3>
+                </div>
 
-            <div class="absolute top-16 right-1/2 translate-x-1/2 w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-2xl backdrop-blur-xl">
-                🤖
-            </div>
+                <!-- FLOATING ICONS -->
+                <div class="absolute top-1/2 left-0 -translate-y-1/2 w-16 h-16 rounded-3xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-3xl backdrop-blur-xl pulse-glow">
+                    📱
+                </div>
 
-            <div class="absolute bottom-16 left-1/2 -translate-x-1/2 w-14 h-14 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center text-2xl backdrop-blur-xl">
-                ⚡
+                <div class="absolute top-16 right-1/2 translate-x-1/2 w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-2xl backdrop-blur-xl float-slow">
+                    🤖
+                </div>
+
+                <div class="absolute bottom-16 left-1/2 -translate-x-1/2 w-14 h-14 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center text-2xl backdrop-blur-xl float-slow" style="animation-delay: 1.5s;">
+                    💻
+                </div>
+
             </div>
 
         </div>
 
-    </div>
-
-</div>
-
         <!-- REGISTER CARD -->
-        <div class="relative">
+        <div class="relative soft-reveal">
 
             <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-[2rem] blur opacity-20"></div>
 
-            <div class="relative bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[2rem] p-10 shadow-2xl">
+            <div class="relative bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[2rem] p-10 shadow-2xl animated-border">
 
-                <!-- HEADER -->
                 <div class="text-center mb-10">
 
-                    <h2 class="text-4xl font-bold mb-3">
+                    <div class="absolute top-10 left-10 text-5xl z-50 rocket-launch pointer-events-none">
+                        🚀
+                    </div>
+
+                    <h2 class="text-4xl font-black mb-3 shine-text">
                         Create Account
                     </h2>
 
                     <p class="text-slate-400">
-                        Join the AI-powered mobile exploration platform.
+                        Join the AI-powered device intelligence platform.
                     </p>
 
                 </div>
 
-                <!-- FORM -->
                 <form method="POST" class="space-y-6">
 
                     {% csrf_token %}
 
-                    <!-- USERNAME -->
                     <div>
-
                         <label class="block mb-3 text-sm text-slate-300 font-medium">
                             Username
                         </label>
@@ -119,15 +114,12 @@
                             type="text"
                             name="username"
                             placeholder="Enter username"
-                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition"
+                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition focus:scale-[1.01]"
                             required
                         >
-
                     </div>
 
-                    <!-- EMAIL -->
                     <div>
-
                         <label class="block mb-3 text-sm text-slate-300 font-medium">
                             Email
                         </label>
@@ -136,15 +128,12 @@
                             type="email"
                             name="email"
                             placeholder="Enter email"
-                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition"
+                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition focus:scale-[1.01]"
                             required
                         >
-
                     </div>
 
-                    <!-- PASSWORD -->
                     <div>
-
                         <label class="block mb-3 text-sm text-slate-300 font-medium">
                             Password
                         </label>
@@ -153,15 +142,12 @@
                             type="password"
                             name="password"
                             placeholder="Enter password"
-                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition"
+                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition focus:scale-[1.01]"
                             required
                         >
-
                     </div>
 
-                    <!-- CONFIRM PASSWORD -->
                     <div>
-
                         <label class="block mb-3 text-sm text-slate-300 font-medium">
                             Confirm Password
                         </label>
@@ -170,13 +156,11 @@
                             type="password"
                             name="confirm_password"
                             placeholder="Confirm password"
-                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition"
+                            class="w-full bg-slate-900/80 border border-white/10 focus:border-blue-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition focus:scale-[1.01]"
                             required
                         >
-
                     </div>
 
-                    <!-- BUTTON -->
                     <button
                         type="submit"
                         class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 text-white py-4 rounded-2xl text-lg font-semibold shadow-xl shadow-blue-500/20 transition hover:-translate-y-1"
@@ -186,11 +170,9 @@
 
                 </form>
 
-                <!-- LOGIN -->
                 <div class="mt-8 text-center">
 
                     <p class="text-slate-400">
-
                         Already have an account?
 
                         <a
@@ -199,7 +181,6 @@
                         >
                             Login
                         </a>
-
                     </p>
 
                 </div>

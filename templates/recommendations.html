@@ -2,105 +2,251 @@
 
 {% block content %}
 
-<section class="relative min-h-screen px-6 py-16 overflow-hidden">
+<style>
+    @keyframes cardRise {
+        from {
+            opacity: 0;
+            transform: translateY(28px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .card-rise {
+        animation: cardRise 0.7s ease-out both;
+    }
+
+    @keyframes happyBounce {
+        0%, 100% {
+            transform: translateY(0) rotate(-2deg);
+        }
+        50% {
+            transform: translateY(-18px) rotate(2deg);
+        }
+    }
+
+    .happy-bounce {
+        animation: happyBounce 3.5s ease-in-out infinite;
+    }
+
+    @keyframes sparkleMove {
+        0%, 100% {
+            transform: scale(1) rotate(0deg);
+            opacity: 0.5;
+        }
+        50% {
+            transform: scale(1.4) rotate(20deg);
+            opacity: 1;
+        }
+    }
+
+    .sparkle {
+        animation: sparkleMove 2.5s ease-in-out infinite;
+    }
+
+    @keyframes phoneHover {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-14px);
+        }
+    }
+
+    .phone-hover {
+        animation: phoneHover 4s ease-in-out infinite;
+    }
+</style>
+
+<section class="relative min-h-screen px-6 py-14 overflow-hidden">
 
     <div class="absolute inset-0 -z-10">
-        <div class="absolute top-32 left-10 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-32 right-10 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute top-24 left-10 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-24 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,#0f172a_0%,#020617_55%)]"></div>
     </div>
 
     <div class="max-w-7xl mx-auto">
 
         <!-- HEADER -->
-        <div class="text-center mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
 
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-300 text-sm mb-6">
-                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                AI analysis completed
+            <div>
+
+                <div class="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-green-500/20 bg-green-500/10 text-green-300 text-sm mb-7">
+                    <span class="w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
+                    AI results are ready
+                </div>
+
+                <h1 class="text-6xl md:text-7xl font-black tracking-tight mb-6">
+                    Your
+                    <span class="shine-text">
+                        perfect matches
+                    </span>
+                    are here.
+                </h1>
+
+                <p class="text-slate-400 text-lg max-w-2xl leading-8">
+                    Aether analyzed your preferences and ranked the best smartphones based on price, performance, storage and usage fit.
+                </p>
+
             </div>
 
-            <h1 class="text-6xl font-bold tracking-tight mb-5">
-                AI Recommended Devices
-            </h1>
+            <!-- HAPPY ASSISTANT VISUAL -->
+            <div class="hidden lg:flex justify-center">
 
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto leading-8">
-                Ranked results based on your budget, brand preference, usage type and device specifications.
-            </p>
+                <div class="relative w-[390px] h-[330px] flex items-center justify-center">
+
+                    <div class="absolute w-72 h-72 bg-green-500/10 rounded-full blur-3xl"></div>
+
+                    <div class="absolute top-6 left-8 text-4xl sparkle">
+                        ✨
+                    </div>
+
+                    <div class="absolute top-16 right-10 text-3xl sparkle" style="animation-delay: 0.8s;">
+                        ⭐
+                    </div>
+
+                    <div class="absolute bottom-12 left-14 text-3xl sparkle" style="animation-delay: 1.4s;">
+                        ✨
+                    </div>
+
+                    <div class="relative bg-white/5 border border-white/10 rounded-[2.5rem] px-10 py-9 backdrop-blur-2xl shadow-2xl happy-bounce">
+
+                        <div class="text-center">
+
+                                <!-- GLOW -->
+                            <div class="relative w-32 h-32 mx-auto mb-6">
+
+                                <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full blur-2xl opacity-40"></div>
+
+                                <div class="relative w-full h-full rounded-full bg-slate-950 border border-white/10 flex items-center justify-center shadow-2xl shadow-blue-500/20">
+                                    <div class="text-6xl">
+                                        🤖
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <h2 class="text-3xl font-black mb-2">
+                                Found great matches!
+                            </h2>
+
+                            <p class="text-slate-400">
+                                Your AI assistant picked the best devices.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="absolute -bottom-2 right-4 bg-slate-900 border border-white/10 rounded-2xl px-5 py-4 shadow-xl">
+                        <p class="text-sm text-slate-400">Recommendation</p>
+                        <h3 class="text-xl font-black text-green-400">Completed</h3>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
         {% if recommended_devices %}
 
-        <!-- TOP RECOMMENDATION SPOTLIGHT -->
+        <!-- TOP RECOMMENDATION -->
         {% for item in recommended_devices %}
             {% if forloop.first %}
 
-            <div class="mb-16 relative">
+            <div class="mb-16 relative card-rise">
 
-                <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-[2rem] blur opacity-25"></div>
+                <div class="absolute -inset-1 bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 rounded-[2.5rem] blur opacity-30"></div>
 
-                <div class="relative bg-white/5 border border-white/10 rounded-[2rem] p-8 md:p-10 backdrop-blur-2xl shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div class="relative bg-white/5 border border-white/10 rounded-[2.5rem] p-8 md:p-10 backdrop-blur-2xl shadow-2xl grid grid-cols-1 lg:grid-cols-2 gap-10 items-center overflow-hidden">
 
-                    <div class="flex justify-center">
+                    <div class="absolute top-0 right-0 w-72 h-72 bg-green-500/10 blur-3xl"></div>
+
+                    <div class="flex justify-center relative">
+
+                        <div class="absolute w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+
                         <div class="relative">
-                            <div class="absolute -inset-8 bg-blue-500/20 rounded-full blur-3xl"></div>
+                            <div class="absolute -inset-10 bg-blue-500/20 rounded-full blur-3xl"></div>
+
                             <img
                                 src="{{ item.device.image_url }}"
                                 alt="{{ item.device.name }}"
-                                class="relative h-80 object-contain drop-shadow-2xl"
+                                class="relative h-80 object-contain drop-shadow-2xl phone-hover"
                             >
                         </div>
+
                     </div>
 
-                    <div>
+                    <div class="relative z-10">
 
-                        <div class="flex items-center gap-3 mb-5">
-                            <span class="bg-green-500/10 text-green-400 px-4 py-2 rounded-full font-semibold">
-                                🏆 Top Match
+                        <div class="flex flex-wrap items-center gap-3 mb-6">
+
+                            <span class="bg-yellow-500/10 text-yellow-300 px-4 py-2 rounded-full font-bold border border-yellow-500/20">
+                                🏆 Rank #1
                             </span>
 
-                            <span class="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full font-semibold">
+                            <span class="bg-green-500/10 text-green-400 px-4 py-2 rounded-full font-bold border border-green-500/20">
                                 {{ item.score }}% Match
                             </span>
+
+                            <span class="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full font-bold border border-blue-500/20">
+                                {{ item.device.brand }}
+                            </span>
+
                         </div>
 
-                        <h2 class="text-5xl font-bold mb-5">
+                        <h2 class="text-5xl font-black mb-5 shine-text">
                             {{ item.device.name }}
                         </h2>
 
                         <p class="text-slate-400 text-lg mb-8 leading-8">
-                            This device is ranked highest by the AI engine based on performance, storage, price-to-value and usage fit.
+                            Highest ranked by Aether based on performance, storage, price-to-value and usage compatibility.
                         </p>
 
                         <div class="grid grid-cols-2 gap-4 mb-8">
 
-                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
-                                <p class="text-slate-500 text-sm">Brand</p>
-                                <p class="text-xl font-bold">{{ item.device.brand }}</p>
-                            </div>
-
-                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
+                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5 hover:border-green-500/30 transition">
                                 <p class="text-slate-500 text-sm">Price</p>
                                 <p class="text-xl font-bold">₹{{ item.device.price }}</p>
                             </div>
 
                             {% if item.device.ram %}
-                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
+                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5 hover:border-blue-500/30 transition">
                                 <p class="text-slate-500 text-sm">RAM</p>
                                 <p class="text-xl font-bold">{{ item.device.ram }}</p>
                             </div>
                             {% endif %}
 
                             {% if item.device.storage %}
-                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5">
+                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5 hover:border-purple-500/30 transition">
                                 <p class="text-slate-500 text-sm">Storage</p>
                                 <p class="text-xl font-bold">{{ item.device.storage }}</p>
+                            </div>
+                            {% endif %}
+
+                            {% if item.device.battery %}
+                            <div class="bg-slate-950/70 border border-white/10 rounded-2xl p-5 hover:border-cyan-500/30 transition">
+                                <p class="text-slate-500 text-sm">Battery</p>
+                                <p class="text-xl font-bold">{{ item.device.battery }}</p>
                             </div>
                             {% endif %}
 
                         </div>
 
                         <div class="flex flex-col sm:flex-row gap-4">
+
+                            <a
+                                href="/device/{{ item.device.id }}/"
+                                class="bg-slate-950/70 border border-white/10 hover:border-blue-500/40 text-white px-7 py-4 rounded-2xl font-semibold transition text-center hover:-translate-y-1"
+                            >
+                                View Details
+                            </a>
 
                             {% if item.device.id in favorite_device_ids %}
 
@@ -141,13 +287,13 @@
             {% endif %}
         {% endfor %}
 
-
         <!-- OTHER RECOMMENDATIONS -->
         <div class="flex items-center justify-between mb-8">
 
-            <h2 class="text-3xl font-bold">
-                More Matches
-            </h2>
+            <div>
+                <p class="text-blue-400 font-semibold mb-2">AI RESULT GRID</p>
+                <h2 class="text-4xl font-black">More Matches</h2>
+            </div>
 
             <a
                 href="/favorites/"
@@ -162,11 +308,13 @@
 
             {% for item in recommended_devices %}
 
-            <div class="group bg-white/5 border border-white/10 rounded-[2rem] p-6 backdrop-blur-xl hover:bg-white/10 transition hover:-translate-y-2 shadow-xl">
+            <div class="group relative bg-white/5 border border-white/10 rounded-[2rem] p-6 backdrop-blur-xl hover:bg-white/10 transition hover:-translate-y-3 shadow-xl overflow-hidden card-rise">
 
-                <div class="flex justify-between items-start mb-5">
+                <div class="absolute top-0 right-0 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-purple-500/10 transition"></div>
 
-                    <span class="bg-green-500/10 text-green-400 px-4 py-2 rounded-full font-semibold text-sm">
+                <div class="flex justify-between items-start mb-5 relative z-10">
+
+                    <span class="bg-green-500/10 text-green-400 px-4 py-2 rounded-full font-bold text-sm border border-green-500/20">
                         {{ item.score }}% Match
                     </span>
 
@@ -176,26 +324,30 @@
 
                 </div>
 
-                <div class="h-64 flex items-center justify-center mb-6">
+                <div class="h-64 flex items-center justify-center mb-6 relative">
+
+                    <div class="absolute w-48 h-48 border border-white/5 rounded-full group-hover:scale-110 transition duration-500"></div>
+
                     <img
                         src="{{ item.device.image_url }}"
                         alt="{{ item.device.name }}"
-                        class="max-h-60 object-contain group-hover:scale-105 transition duration-500"
+                        class="relative max-h-60 object-contain group-hover:scale-110 transition duration-500"
                     >
+
                 </div>
 
-                <h2 class="text-2xl font-bold mb-4">
+                <h2 class="text-2xl font-black mb-4 relative z-10">
                     {{ item.device.name }}
                 </h2>
 
                 <a
                     href="/device/{{ item.device.id }}/"
-                    class="inline-block text-blue-400 hover:text-blue-300 font-semibold mb-4"
+                    class="inline-block text-blue-400 hover:text-blue-300 font-semibold mb-4 relative z-10"
                 >
                     View Details →
                 </a>
 
-                <div class="space-y-3 text-slate-300 text-sm">
+                <div class="space-y-3 text-slate-300 text-sm relative z-10">
 
                     <div class="flex justify-between border-b border-white/5 pb-2">
                         <span class="text-slate-500">Price</span>
@@ -246,7 +398,7 @@
 
                 </div>
 
-                <div class="mt-7 grid grid-cols-1 gap-3">
+                <div class="mt-7 grid grid-cols-1 gap-3 relative z-10">
 
                     {% if item.device.id in favorite_device_ids %}
 
@@ -286,7 +438,6 @@
 
         {% else %}
 
-        <!-- EMPTY STATE -->
         <div class="max-w-xl mx-auto text-center bg-white/5 border border-white/10 rounded-[2rem] p-12 backdrop-blur-xl">
 
             <div class="text-6xl mb-6">

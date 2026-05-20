@@ -2,47 +2,195 @@
 
 {% block content %}
 
-<section class="relative min-h-screen overflow-hidden px-6 py-24">
+<style>
+    @keyframes laptopOpen {
+        0%, 100% {
+            transform: perspective(900px) rotateX(0deg);
+        }
+        50% {
+            transform: perspective(900px) rotateX(8deg);
+        }
+    }
+
+    .laptop-open {
+        animation: laptopOpen 4s ease-in-out infinite;
+        transform-origin: bottom;
+    }
+
+    @keyframes codeRain {
+        0% {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+        30% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(120px);
+            opacity: 0;
+        }
+    }
+
+    .code-rain {
+        animation: codeRain 3s linear infinite;
+    }
+
+    @keyframes chipOrbit {
+        0%, 100% {
+            transform: translateY(0px) translateX(0px);
+        }
+        50% {
+            transform: translateY(-18px) translateX(10px);
+        }
+    }
+
+    .chip-orbit {
+        animation: chipOrbit 4s ease-in-out infinite;
+    }
+</style>
+
+<section class="relative min-h-screen overflow-hidden px-6 pt-8 pb-20">
 
     <div class="absolute inset-0 -z-10">
-        <div class="absolute top-32 left-20 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-20 right-20 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute top-20 left-20 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-20 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,#1e1b4b_0%,#020617_55%)]"></div>
     </div>
 
-    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
 
+        <!-- LEFT -->
         <div>
 
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/20 bg-purple-500/10 text-purple-300 text-sm mb-8">
-                💻 AI Laptop Recommendation Engine
+            <div class="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-purple-500/20 bg-purple-500/10 text-purple-300 text-sm mb-8 pulse-glow">
+                <span class="w-2 h-2 bg-purple-400 rounded-full animate-ping"></span>
+                Laptop Workstation Builder
             </div>
 
-            <h1 class="text-6xl font-bold leading-tight mb-8">
-                Find your
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+            <h1 class="text-6xl md:text-7xl font-black leading-tight mb-8">
+                Build your
+                <span class="shine-text">
                     perfect laptop
                 </span>
+                setup.
             </h1>
 
-            <p class="text-slate-400 text-lg leading-8 mb-10 max-w-2xl">
-                Select brand, budget and purpose. Our system will recommend laptops for coding, gaming, study, business and editing.
+            <p class="text-slate-400 text-lg leading-9 mb-12 max-w-2xl">
+                Choose your brand, budget and purpose. Aether ranks laptops for coding,
+                gaming, editing, study and business using dataset-powered intelligence.
             </p>
+
+            <!-- UNIQUE LAPTOP ANIMATION -->
+            <div class="relative hidden lg:flex items-center justify-center h-[430px]">
+
+                <div class="absolute w-[420px] h-[260px] bg-purple-500/10 rounded-full blur-3xl"></div>
+
+                <!-- LAPTOP BODY -->
+                <div class="relative w-[420px]">
+
+                    <!-- SCREEN -->
+                    <div class="relative mx-auto w-[360px] h-[230px] rounded-t-[2rem] bg-slate-950 border border-white/10 p-4 laptop-open overflow-hidden shadow-2xl">
+
+                        <div class="h-full rounded-2xl bg-gradient-to-b from-slate-900 to-slate-950 border border-white/10 relative overflow-hidden">
+
+                            <div class="absolute inset-0 bg-purple-500/5"></div>
+
+                            <!-- CODE RAIN -->
+                            <div class="absolute left-8 top-4 text-green-400 text-sm code-rain">
+                                &lt;/&gt;
+                            </div>
+
+                            <div class="absolute left-28 top-0 text-blue-400 text-sm code-rain" style="animation-delay: 1s;">
+                                AI
+                            </div>
+
+                            <div class="absolute right-20 top-2 text-purple-400 text-sm code-rain" style="animation-delay: 1.7s;">
+                                512GB
+                            </div>
+
+                            <div class="absolute right-8 top-8 text-cyan-400 text-sm code-rain" style="animation-delay: 2.2s;">
+                                RAM
+                            </div>
+
+                            <div class="relative z-10 h-full flex flex-col items-center justify-center text-center">
+
+                                <div class="text-6xl mb-5">
+                                    💻
+                                </div>
+
+                                <h3 class="text-3xl font-black">
+                                    AI Laptop Scan
+                                </h3>
+
+                                <p class="text-slate-400 mt-3">
+                                    CPU • RAM • SSD • Display
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- KEYBOARD BASE -->
+                    <div class="mx-auto w-[420px] h-20 bg-gradient-to-b from-slate-800 to-slate-950 border border-white/10 rounded-b-[2rem] shadow-2xl relative">
+
+                        <div class="absolute left-1/2 top-5 -translate-x-1/2 w-28 h-5 bg-white/10 rounded-full"></div>
+
+                    </div>
+
+                </div>
+
+                <!-- FLOATING CHIPS -->
+                <div class="absolute top-6 left-0 bg-slate-900/90 border border-white/10 rounded-2xl px-5 py-4 chip-orbit">
+                    <p class="text-sm text-slate-400">Best For</p>
+                    <h3 class="text-2xl font-black text-purple-400">Coding</h3>
+                </div>
+
+                <div class="absolute top-28 right-0 bg-slate-900/90 border border-white/10 rounded-2xl px-5 py-4 chip-orbit" style="animation-delay: 1s;">
+                    <p class="text-sm text-slate-400">SSD</p>
+                    <h3 class="text-2xl font-black text-blue-400">512GB</h3>
+                </div>
+
+                <div class="absolute bottom-20 left-10 bg-slate-900/90 border border-white/10 rounded-2xl px-5 py-4 chip-orbit" style="animation-delay: 2s;">
+                    <p class="text-sm text-slate-400">Performance</p>
+                    <h3 class="text-2xl font-black text-green-400">High</h3>
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="relative">
+        <!-- RIGHT FORM -->
+        <div class="relative mt-2 lg:mt-0">
 
             <div class="absolute -inset-1 bg-gradient-to-r from-purple-500 to-blue-600 rounded-[2rem] blur opacity-20"></div>
 
-            <div class="relative bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[2rem] p-10 shadow-2xl">
+            <div class="relative bg-white/5 border border-white/10 backdrop-blur-2xl rounded-[2rem] p-10 shadow-2xl animated-border">
 
-                <h2 class="text-4xl font-bold mb-3">
-                    Laptop Explorer
-                </h2>
+                <div class="mb-10">
 
-                <p class="text-slate-400 mb-10">
-                    Fill your laptop preferences.
-                </p>
+                    <div class="flex items-center gap-4 mb-5">
+
+                        <div class="w-16 h-16 rounded-3xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-3xl pulse-glow">
+                            💻
+                        </div>
+
+                        <div>
+
+                            <h2 class="text-4xl font-black shine-text">
+                                Laptop Explorer
+                            </h2>
+
+                            <p class="text-slate-400 mt-1">
+                                AI workstation recommendation
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
                 <form method="POST" action="/laptop-recommendations/" class="space-y-7">
 
@@ -55,7 +203,7 @@
 
                         <select
                             name="brand"
-                            class="w-full bg-slate-900/80 border border-white/10 focus:border-purple-500 outline-none rounded-2xl px-5 py-4 text-white transition"
+                            class="w-full bg-slate-900/80 border border-white/10 focus:border-purple-500 outline-none rounded-2xl px-5 py-4 text-white transition focus:scale-[1.01]"
                             required
                         >
                             <option value="">Select Brand</option>
@@ -77,7 +225,7 @@
                             type="number"
                             name="budget"
                             placeholder="Enter your budget"
-                            class="w-full bg-slate-900/80 border border-white/10 focus:border-purple-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition"
+                            class="w-full bg-slate-900/80 border border-white/10 focus:border-purple-500 outline-none rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 transition focus:scale-[1.01]"
                             required
                         >
                     </div>
@@ -89,7 +237,7 @@
 
                         <select
                             name="usage"
-                            class="w-full bg-slate-900/80 border border-white/10 focus:border-purple-500 outline-none rounded-2xl px-5 py-4 text-white transition"
+                            class="w-full bg-slate-900/80 border border-white/10 focus:border-purple-500 outline-none rounded-2xl px-5 py-4 text-white transition focus:scale-[1.01]"
                             required
                         >
                             <option value="coding">Coding</option>
@@ -104,7 +252,7 @@
                         type="submit"
                         class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 text-white py-4 rounded-2xl text-lg font-semibold shadow-xl shadow-purple-500/20 transition hover:-translate-y-1"
                     >
-                        Get Laptop Recommendations
+                        Build My Laptop Match
                     </button>
 
                 </form>

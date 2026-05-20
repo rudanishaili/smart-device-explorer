@@ -2,74 +2,127 @@
 
 {% block content %}
 
-<section class="relative min-h-screen px-6 py-16 overflow-hidden">
+<style>
+    @keyframes deviceFloat {
+        0%, 100% { transform: translateY(0) rotate(-2deg); }
+        50% { transform: translateY(-18px) rotate(2deg); }
+    }
+
+    .device-float {
+        animation: deviceFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes scanGlow {
+        0%, 100% { opacity: 0.25; transform: translateY(0); }
+        50% { opacity: 1; transform: translateY(18px); }
+    }
+
+    .scan-glow {
+        animation: scanGlow 2.8s ease-in-out infinite;
+    }
+
+    @keyframes specPop {
+        from { opacity: 0; transform: translateY(20px) scale(0.96); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .spec-pop {
+        animation: specPop 0.7s ease-out both;
+    }
+</style>
+
+<section class="relative min-h-screen px-6 py-14 overflow-hidden">
 
     <div class="absolute inset-0 -z-10">
-        <div class="absolute top-32 left-10 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-32 right-10 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute top-24 left-10 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-24 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,#111827_0%,#020617_55%)]"></div>
     </div>
 
     <div class="max-w-7xl mx-auto">
 
-        <a href="/recommendations/" class="text-blue-400 hover:text-blue-300 font-semibold">
+        <a href="/recommendations/" class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold mb-10">
             ← Back to Recommendations
         </a>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-10 items-center">
+        <!-- HERO -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
-            <!-- IMAGE -->
-            <div class="bg-white/5 border border-white/10 rounded-[2rem] p-10 backdrop-blur-xl shadow-2xl">
+            <!-- DEVICE SHOWCASE -->
+            <div class="relative">
 
-                <img
-                    src="{{ device.image_url }}"
-                    alt="{{ device.name }}"
-                    class="w-full h-[480px] object-contain"
-                >
+                <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-purple-600 rounded-[3rem] blur opacity-25"></div>
+
+                <div class="relative bg-white/5 border border-white/10 rounded-[3rem] p-10 backdrop-blur-2xl shadow-2xl overflow-hidden">
+
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5"></div>
+
+                    <div class="absolute left-0 right-0 top-20 h-1 bg-cyan-400 shadow-[0_0_40px_#22d3ee] scan-glow"></div>
+
+                    <div class="relative h-[500px] flex items-center justify-center">
+
+                        <div class="absolute w-96 h-96 rounded-full border border-white/5"></div>
+                        <div class="absolute w-72 h-72 rounded-full border border-blue-500/10"></div>
+
+                        <img
+                            src="{{ device.image_url }}"
+                            alt="{{ device.name }}"
+                            class="relative max-h-[430px] object-contain drop-shadow-2xl device-float"
+                        >
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <!-- DETAILS -->
-            <div>
+            <!-- INFO PANEL -->
+            <div class="relative">
 
-                <p class="text-blue-400 font-semibold mb-3">
+                <div class="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-300 text-sm mb-7">
+                    <span class="w-2 h-2 bg-blue-400 rounded-full animate-ping"></span>
+                    Device Command Center
+                </div>
+
+                <p class="text-blue-400 font-bold mb-3">
                     {{ device.brand }}
                 </p>
 
-                <h1 class="text-6xl font-bold mb-6">
+                <h1 class="text-5xl md:text-6xl font-black mb-6 shine-text">
                     {{ device.name }}
                 </h1>
 
-                <p class="text-4xl font-bold text-green-400 mb-8">
+                <p class="text-5xl font-black text-green-400 mb-8">
                     ₹{{ device.price }}
                 </p>
 
                 <div class="grid grid-cols-2 gap-4 mb-8">
 
                     {% if device.ram %}
-                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5 spec-pop">
                         <p class="text-slate-500 text-sm">RAM</p>
-                        <p class="text-2xl font-bold">{{ device.ram }}</p>
+                        <p class="text-2xl font-black">{{ device.ram }}</p>
                     </div>
                     {% endif %}
 
                     {% if device.storage %}
-                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5 spec-pop">
                         <p class="text-slate-500 text-sm">Storage</p>
-                        <p class="text-2xl font-bold">{{ device.storage }}</p>
+                        <p class="text-2xl font-black">{{ device.storage }}</p>
                     </div>
                     {% endif %}
 
                     {% if device.battery %}
-                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5 spec-pop">
                         <p class="text-slate-500 text-sm">Battery</p>
-                        <p class="text-xl font-bold">{{ device.battery }}</p>
+                        <p class="text-xl font-black">{{ device.battery }}</p>
                     </div>
                     {% endif %}
 
                     {% if device.display %}
-                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-5 spec-pop">
                         <p class="text-slate-500 text-sm">Display</p>
-                        <p class="text-xl font-bold">{{ device.display }}</p>
+                        <p class="text-xl font-black">{{ device.display }}</p>
                     </div>
                     {% endif %}
 
@@ -90,7 +143,7 @@
 
                     <button
                         data-device-id="{{ device.id }}"
-                        class="favorite-btn bg-blue-600 hover:bg-blue-500 text-white px-7 py-4 rounded-2xl font-semibold transition"
+                        class="favorite-btn bg-blue-600 hover:bg-blue-500 text-white px-7 py-4 rounded-2xl font-semibold transition hover:-translate-y-1"
                     >
                         Add to Favorites
                     </button>
@@ -100,7 +153,7 @@
                     <a
                         href="{{ device.source_url }}"
                         target="_blank"
-                        class="bg-orange-500 hover:bg-orange-400 text-white px-7 py-4 rounded-2xl font-semibold transition text-center"
+                        class="bg-orange-500 hover:bg-orange-400 text-white px-7 py-4 rounded-2xl font-semibold transition text-center hover:-translate-y-1"
                     >
                         Buy Now
                     </a>
@@ -112,55 +165,61 @@
         </div>
 
         <!-- FULL SPECS -->
-        <div class="mt-16 bg-white/5 border border-white/10 rounded-[2rem] p-8 backdrop-blur-xl">
+        <div class="mt-20 relative">
 
-            <h2 class="text-3xl font-bold mb-8">
-                Full Specifications
-            </h2>
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-[2.5rem] blur opacity-15"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-300">
+            <div class="relative bg-white/5 border border-white/10 rounded-[2.5rem] p-8 backdrop-blur-xl shadow-2xl">
 
-                {% if device.processor %}
-                <div class="border-b border-white/10 pb-4">
-                    <p class="text-slate-500">Processor</p>
-                    <p class="font-semibold">{{ device.processor }}</p>
+                <h2 class="text-4xl font-black mb-8 shine-text">
+                    Full Specification Matrix
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-300">
+
+                    {% if device.processor %}
+                    <div class="bg-slate-950/50 border border-white/5 rounded-2xl p-5">
+                        <p class="text-slate-500 mb-2">Processor</p>
+                        <p class="font-semibold">{{ device.processor }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if device.camera %}
+                    <div class="bg-slate-950/50 border border-white/5 rounded-2xl p-5">
+                        <p class="text-slate-500 mb-2">Camera</p>
+                        <p class="font-semibold">{{ device.camera }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if device.display %}
+                    <div class="bg-slate-950/50 border border-white/5 rounded-2xl p-5">
+                        <p class="text-slate-500 mb-2">Display</p>
+                        <p class="font-semibold">{{ device.display }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if device.battery %}
+                    <div class="bg-slate-950/50 border border-white/5 rounded-2xl p-5">
+                        <p class="text-slate-500 mb-2">Battery</p>
+                        <p class="font-semibold">{{ device.battery }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if device.ram %}
+                    <div class="bg-slate-950/50 border border-white/5 rounded-2xl p-5">
+                        <p class="text-slate-500 mb-2">RAM</p>
+                        <p class="font-semibold">{{ device.ram }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if device.storage %}
+                    <div class="bg-slate-950/50 border border-white/5 rounded-2xl p-5">
+                        <p class="text-slate-500 mb-2">Storage</p>
+                        <p class="font-semibold">{{ device.storage }}</p>
+                    </div>
+                    {% endif %}
+
                 </div>
-                {% endif %}
-
-                {% if device.camera %}
-                <div class="border-b border-white/10 pb-4">
-                    <p class="text-slate-500">Camera</p>
-                    <p class="font-semibold">{{ device.camera }}</p>
-                </div>
-                {% endif %}
-
-                {% if device.display %}
-                <div class="border-b border-white/10 pb-4">
-                    <p class="text-slate-500">Display</p>
-                    <p class="font-semibold">{{ device.display }}</p>
-                </div>
-                {% endif %}
-
-                {% if device.battery %}
-                <div class="border-b border-white/10 pb-4">
-                    <p class="text-slate-500">Battery</p>
-                    <p class="font-semibold">{{ device.battery }}</p>
-                </div>
-                {% endif %}
-
-                {% if device.ram %}
-                <div class="border-b border-white/10 pb-4">
-                    <p class="text-slate-500">RAM</p>
-                    <p class="font-semibold">{{ device.ram }}</p>
-                </div>
-                {% endif %}
-
-                {% if device.storage %}
-                <div class="border-b border-white/10 pb-4">
-                    <p class="text-slate-500">Storage</p>
-                    <p class="font-semibold">{{ device.storage }}</p>
-                </div>
-                {% endif %}
 
             </div>
 
