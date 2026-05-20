@@ -144,6 +144,65 @@
 
         </div>
 
+        <form method="GET" class="mb-12">
+
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+
+        <input
+            type="text"
+            name="search"
+            value="{{ search }}"
+            placeholder="Search laptop..."
+            class="bg-slate-900/80 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-purple-500"
+        >
+
+        <input
+            type="number"
+            name="max_price"
+            value="{{ max_price }}"
+            placeholder="Max Price"
+            class="bg-slate-900/80 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-purple-500"
+        >
+
+        <select
+            name="ram"
+            class="bg-slate-900/80 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-purple-500"
+        >
+            <option value="">RAM</option>
+            <option value="8GB">8GB</option>
+            <option value="16GB">16GB</option>
+            <option value="32GB">32GB</option>
+        </select>
+
+        <select
+            name="storage"
+            class="bg-slate-900/80 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-purple-500"
+        >
+            <option value="">SSD</option>
+            <option value="256GB">256GB</option>
+            <option value="512GB">512GB</option>
+            <option value="1TB">1TB</option>
+        </select>
+
+        <input
+            type="text"
+            name="processor"
+            value="{{ processor_filter }}"
+            placeholder="Processor"
+            class="bg-slate-900/80 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-purple-500"
+        >
+
+    </div>
+
+    <button
+        type="submit"
+        class="mt-5 bg-purple-600 hover:bg-purple-500 text-white px-8 py-4 rounded-2xl font-semibold transition"
+    >
+        Apply Filters
+    </button>
+
+</form>
+
         {% if recommended_devices %}
 
         <!-- TOP LAPTOP -->

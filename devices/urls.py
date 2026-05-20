@@ -33,4 +33,5 @@ urlpatterns = [
 
     path('laptop-favorites/', views.laptop_favorites, name='laptop_favorites'),
     path('laptop-compare/', views.laptop_compare, name='laptop_compare'),
+    path('device/<int:device_id>/review/', views.add_review, name='add_review'),
 ]

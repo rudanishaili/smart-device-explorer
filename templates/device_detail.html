@@ -225,6 +225,169 @@
 
         </div>
 
+        <!-- REVIEWS SECTION -->
+<div class="mt-20 relative">
+
+    <div class="absolute -inset-1 bg-gradient-to-r from-yellow-500 to-blue-600 rounded-[2.5rem] blur opacity-15"></div>
+
+    <div class="relative bg-white/5 border border-white/10 rounded-[2.5rem] p-8 backdrop-blur-xl shadow-2xl">
+
+        <div class="flex flex-col md:flex-row justify-between gap-6 mb-10">
+
+            <div>
+                <h2 class="text-4xl font-black shine-text">
+                    Ratings & Reviews
+                </h2>
+
+                <p class="text-slate-400 mt-3">
+                    See what users think about this device.
+                </p>
+            </div>
+
+            <div class="flex gap-4">
+
+                <div class="bg-slate-950/60 border border-white/10 rounded-2xl px-6 py-4 text-center">
+                    <p class="text-3xl font-black text-yellow-400">
+                        ⭐ {{ average_rating }}
+                    </p>
+                    <p class="text-slate-500 text-sm">
+                        Average Rating
+                    </p>
+                </div>
+
+                <div class="bg-slate-950/60 border border-white/10 rounded-2xl px-6 py-4 text-center">
+                    <p class="text-3xl font-black text-green-400">
+                        👍 {{ likes_count }}
+                    </p>
+                    <p class="text-slate-500 text-sm">
+                        Likes
+                    </p>
+                </div>
+
+                <div class="bg-slate-950/60 border border-white/10 rounded-2xl px-6 py-4 text-center">
+                    <p class="text-3xl font-black text-red-400">
+                        👎 {{ dislikes_count }}
+                    </p>
+                    <p class="text-slate-500 text-sm">
+                        Dislikes
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        {% if user.is_authenticated %}
+
+        <form method="POST" action="/device/{{ device.id }}/review/" class="mb-12 bg-slate-950/50 border border-white/10 rounded-3xl p-6">
+
+            {% csrf_token %}
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+
+                <select
+                    name="rating"
+                    class="bg-slate-900 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-yellow-400"
+                    required
+                >
+                    <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+                    <option value="4">⭐⭐⭐⭐ 4 Stars</option>
+                    <option value="3">⭐⭐⭐ 3 Stars</option>
+                    <option value="2">⭐⭐ 2 Stars</option>
+                    <option value="1">⭐ 1 Star</option>
+                </select>
+
+                <select
+                    name="reaction"
+                    class="bg-slate-900 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-blue-400"
+                    required
+                >
+                    <option value="like">👍 Like</option>
+                    <option value="dislike">👎 Dislike</option>
+                </select>
+
+                <button
+                    type="submit"
+                    class="bg-gradient-to-r from-yellow-500 to-blue-600 text-white rounded-2xl font-bold hover:opacity-90 transition"
+                >
+                    Submit Review
+                </button>
+
+            </div>
+
+            <textarea
+                name="comment"
+                rows="4"
+                placeholder="Write your review..."
+                class="w-full bg-slate-900 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-slate-500 outline-none focus:border-blue-400"
+            ></textarea>
+
+        </form>
+
+        {% else %}
+
+        <p class="mb-10 text-slate-400">
+            Please <a href="/users/login/" class="text-blue-400 font-semibold">login</a> to leave a review.
+        </p>
+
+        {% endif %}
+
+        <div class="space-y-5">
+
+            {% for review in reviews %}
+
+            <div class="bg-slate-950/50 border border-white/10 rounded-3xl p-6">
+
+                <div class="flex justify-between gap-4 mb-4">
+
+                    <div>
+                        <h3 class="text-xl font-bold">
+                            {{ review.user.username }}
+                        </h3>
+
+                        <p class="text-yellow-400 mt-1">
+                            {% if review.rating == 5 %}⭐⭐⭐⭐⭐{% endif %}
+                            {% if review.rating == 4 %}⭐⭐⭐⭐{% endif %}
+                            {% if review.rating == 3 %}⭐⭐⭐{% endif %}
+                            {% if review.rating == 2 %}⭐⭐{% endif %}
+                            {% if review.rating == 1 %}⭐{% endif %}
+                        </p>
+                    </div>
+
+                    <span class="text-2xl">
+                        {% if review.reaction == "like" %}
+                            👍
+                        {% else %}
+                            👎
+                        {% endif %}
+                    </span>
+
+                </div>
+
+                <p class="text-slate-300 leading-7">
+                    {{ review.comment }}
+                </p>
+
+                <p class="text-slate-600 text-sm mt-4">
+                    {{ review.created_at }}
+                </p>
+
+            </div>
+
+            {% empty %}
+
+            <p class="text-slate-400">
+                No reviews yet. Be the first to review this device.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
     </div>
 
 </section>

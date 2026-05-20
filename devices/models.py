@@ -68,3 +68,39 @@ class Favorite(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.device.name}"
+
+class Review(models.Model):
+
+    LIKE_CHOICES = [
+        ('like', 'Like'),
+        ('dislike', 'Dislike'),
+    ]
+
+    user = models.ForeignKey(
+        'auth.User',
+        on_delete=models.CASCADE
+    )
+
+    device = models.ForeignKey(
+        Device,
+        on_delete=models.CASCADE,
+        related_name='reviews'
+    )
+
+    rating = models.IntegerField(default=5)
+
+    comment = models.TextField(blank=True, null=True)
+
+    reaction = models.CharField(
+        max_length=10,
+        choices=LIKE_CHOICES,
+        default='like'
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'device')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.device.name} - {self.rating} stars"

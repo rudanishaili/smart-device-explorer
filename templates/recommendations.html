@@ -153,6 +153,60 @@
 
         </div>
 
+        <form method="GET" class="mb-12">
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+
+        <input
+            type="text"
+            name="search"
+            value="{{ search }}"
+            placeholder="Search mobile..."
+            class="bg-slate-900/80 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-blue-500"
+        >
+
+        <input
+            type="number"
+            name="max_price"
+            value="{{ max_price }}"
+            placeholder="Max Price"
+            class="bg-slate-900/80 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-blue-500"
+        >
+
+        <select
+            name="ram"
+            class="bg-slate-900/80 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-blue-500"
+        >
+            <option value="">RAM</option>
+            <option value="4GB">4GB</option>
+            <option value="6GB">6GB</option>
+            <option value="8GB">8GB</option>
+            <option value="12GB">12GB</option>
+            <option value="16GB">16GB</option>
+        </select>
+
+        <select
+            name="storage"
+            class="bg-slate-900/80 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-blue-500"
+        >
+            <option value="">Storage</option>
+            <option value="64GB">64GB</option>
+            <option value="128GB">128GB</option>
+            <option value="256GB">256GB</option>
+            <option value="512GB">512GB</option>
+        </select>
+
+    </div>
+
+    <button
+        type="submit"
+        class="mt-5 bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-2xl font-semibold transition"
+    >
+        Apply Filters
+    </button>
+
+</form>
+
         {% if recommended_devices %}
 
         <!-- TOP RECOMMENDATION -->
