@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import Device, Favorite, Review
 from django.contrib.auth.decorators import login_required
+import google.generativeai as genai
+from django.conf import settings
 
 
 def home(request):
@@ -470,3 +472,50 @@ def add_review(request, device_id):
         )
 
     return redirect(f"/device/{device_id}/")
+
+def ai_device_analyzer(request):
+
+    result = None
+    uploaded_image = None
+
+    if request.method == "POST":
+
+        image = request.FILES.get("device_image")
+
+        if image:
+
+            uploaded_image = image
+
+            genai.configure(api_key=settings.GEMINI_API_KEY)
+
+            model = genai.GenerativeModel("gemini-2.0-flash")
+
+            prompt = """
+            Analyze this image and identify the device.
+            Tell:
+            1. Is it mobile or laptop?
+            2. Possible brand/model
+            3. Main visible features
+            4. Estimated usage type
+            5. Short buying suggestion
+            Keep answer clear and student-project friendly.
+            """
+
+            response = model.generate_content([
+                prompt,
+                {
+                    "mime_type": image.content_type,
+                    "data": image.read()
+                }
+            ])
+
+            result = response.text
+
+    return render(
+        request,
+        "ai_device_analyzer.html",
+        {
+            "result": result,
+            "uploaded_image": uploaded_image
+        }
+    )

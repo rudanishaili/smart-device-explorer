@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+    @keyframes scannerMove {
+
+        0% {
+            top: 10%;
+            opacity: 0.7;
+        }
+
+        50% {
+            top: 85%;
+            opacity: 1;
+        }
+
+        100% {
+            top: 10%;
+            opacity: 0.7;
+        }
+
+    }
+
+    .scanner-line {
+        animation: scannerMove 3s linear infinite;
+    }
+
+    @keyframes floatCard {
+
+        0%, 100% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-12px);
+        }
+
+    }
+
+    .float-card {
+        animation: floatCard 4s ease-in-out infinite;
+    }
+
+</style>
+
+<section class="relative min-h-screen px-6 py-16 overflow-hidden">
+
+    <!-- BACKGROUND -->
+    <div class="absolute inset-0 -z-10">
+
+        <div class="absolute top-20 left-10 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"></div>
+
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,#0f172a_0%,#020617_60%)]"></div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- HERO -->
+        <div class="text-center mb-16">
+
+            <div class="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-sm mb-8">
+
+                <span class="w-2 h-2 bg-cyan-400 rounded-full animate-ping"></span>
+
+                AI Vision Scanner Activated
+
+            </div>
+
+            <h1 class="text-6xl md:text-7xl font-black mb-6">
+
+                Device
+                <span class="shine-text">
+                    Image Analyzer
+                </span>
+
+            </h1>
+
+            <p class="text-slate-400 text-lg max-w-3xl mx-auto leading-8">
+
+                Upload any laptop or mobile image and Aether AI will identify the device,
+                estimate usage and generate smart analysis instantly.
+
+            </p>
+
+        </div>
+
+        <!-- MAIN GRID -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+            <!-- UPLOAD -->
+            <div class="relative">
+
+                <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-[2.5rem] blur opacity-20"></div>
+
+                <div class="relative bg-white/5 border border-white/10 rounded-[2.5rem] p-8 backdrop-blur-2xl shadow-2xl overflow-hidden float-card">
+
+                    <div class="flex items-center gap-4 mb-8">
+
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center text-3xl shadow-xl">
+                            📸
+                        </div>
+
+                        <div>
+                            <h2 class="text-3xl font-black">
+                                Upload Device
+                            </h2>
+
+                            <p class="text-slate-400">
+                                AI visual recognition engine
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <form method="POST" enctype="multipart/form-data" class="space-y-6">
+
+                        {% csrf_token %}
+
+                        <div class="relative border-2 border-dashed border-cyan-500/30 rounded-3xl p-10 text-center bg-slate-950/40 overflow-hidden">
+
+                            <div class="absolute left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 scanner-line"></div>
+
+                            <div class="text-7xl mb-5">
+                                🧠
+                            </div>
+
+                            <h3 class="text-2xl font-bold mb-3">
+                                Drag or Upload Image
+                            </h3>
+
+                            <p class="text-slate-400 mb-6">
+                                Upload laptop or smartphone image
+                            </p>
+
+                            <input
+                                type="file"
+                                name="device_image"
+                                accept="image/*"
+                                required
+                                class="block w-full text-slate-300 file:mr-4 file:py-3 file:px-6 file:rounded-2xl file:border-0 file:bg-cyan-500 file:text-white hover:file:bg-cyan-400"
+                            >
+
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:opacity-90 text-white py-5 rounded-2xl text-lg font-bold transition hover:-translate-y-1 shadow-xl"
+                        >
+                            Analyze Device
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <!-- RESULTS -->
+            <div class="relative">
+
+                <div class="absolute -inset-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-[2.5rem] blur opacity-20"></div>
+
+                <div class="relative bg-white/5 border border-white/10 rounded-[2.5rem] p-8 backdrop-blur-2xl shadow-2xl min-h-[650px]">
+
+                    <div class="flex items-center justify-between mb-8">
+
+                        <div>
+                            <h2 class="text-3xl font-black">
+                                AI Results
+                            </h2>
+
+                            <p class="text-slate-400 mt-2">
+                                Neural device interpretation
+                            </p>
+                        </div>
+
+                        <div class="text-5xl">
+                            🤖
+                        </div>
+
+                    </div>
+
+                    {% if uploaded_image %}
+
+                    <div class="relative mb-8 rounded-3xl overflow-hidden border border-white/10 bg-slate-950/40">
+
+                        <img
+                            src="{{ uploaded_image.url }}"
+                            class="w-full h-80 object-cover"
+                        >
+
+                        <div class="absolute inset-0 border border-cyan-500/20 rounded-3xl"></div>
+
+                    </div>
+
+                    {% endif %}
+
+                    {% if result %}
+
+                    <div class="bg-slate-950/50 border border-white/10 rounded-3xl p-7">
+
+                        <div class="flex items-center gap-3 mb-5">
+
+                            <div class="w-4 h-4 rounded-full bg-green-400 animate-pulse"></div>
+
+                            <p class="text-green-400 font-bold">
+                                AI Analysis Completed
+                            </p>
+
+                        </div>
+
+                        <div class="text-slate-300 leading-8 whitespace-pre-line text-lg">
+                            {{ result }}
+                        </div>
+
+                    </div>
+
+                    {% else %}
+
+                    <div class="h-[420px] flex flex-col items-center justify-center text-center">
+
+                        <div class="text-8xl mb-6 opacity-80">
+                            🛰️
+                        </div>
+
+                        <h3 class="text-3xl font-black mb-4">
+                            Waiting for device scan
+                        </h3>
+
+                        <p class="text-slate-500 max-w-md leading-7">
+                            Upload an image and the Aether neural engine
+                            will begin identifying the device.
+                        </p>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

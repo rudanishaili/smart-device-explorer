@@ -146,15 +146,24 @@
 
         <form method="GET" class="mb-12">
 
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-[2fr_0.8fr_1fr_1fr_1fr] gap-4 items-center">
 
         <input
+            id="searchInput"
             type="text"
             name="search"
             value="{{ search }}"
             placeholder="Search laptop..."
             class="bg-slate-900/80 border border-white/10 rounded-2xl px-5 py-4 text-white outline-none focus:border-purple-500"
         >
+
+        <button
+            type="button"
+            id="voiceBtn"
+            class="bg-green-600 hover:bg-green-500 text-white rounded-2xl px-5 py-4 font-semibold transition"
+        >
+            🎤 Speak
+        </button>
 
         <input
             type="number"
@@ -535,6 +544,61 @@
 
         });
     });
+</script>
+<script>
+    const voiceBtn = document.getElementById("voiceBtn");
+    const searchInput = document.getElementById("searchInput");
+
+    if (voiceBtn) {
+        voiceBtn.addEventListener("click", function () {
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+            if (!SpeechRecognition) {
+                alert("Voice search is not supported in this browser. Use Google Chrome.");
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+
+            recognition.lang = "en-IN";
+            recognition.interimResults = false;
+            recognition.continuous = false;
+
+            voiceBtn.innerText = "🎙️ Listening...";
+            voiceBtn.classList.remove("bg-green-600");
+            voiceBtn.classList.add("bg-red-600");
+
+            recognition.start();
+
+            recognition.onresult = function (event) {
+                const voiceText = event.results[0][0].transcript;
+
+                searchInput.value = voiceText;
+
+                voiceBtn.innerText = "✅ Found";
+                voiceBtn.classList.remove("bg-red-600");
+                voiceBtn.classList.add("bg-green-600");
+            };
+
+            recognition.onerror = function () {
+                voiceBtn.innerText = "🎤 Speak";
+                voiceBtn.classList.remove("bg-red-600");
+                voiceBtn.classList.add("bg-green-600");
+
+                alert("Could not recognize voice. Try again.");
+            };
+
+            recognition.onend = function () {
+                setTimeout(() => {
+                    voiceBtn.innerText = "🎤 Speak";
+                    voiceBtn.classList.remove("bg-red-600");
+                    voiceBtn.classList.add("bg-green-600");
+                }, 1200);
+            };
+
+        });
+    }
 </script>
 
 {% endblock %}
